@@ -1,0 +1,26 @@
+{
+  "template": "2891de4c48955af824969a263d31b25e7a9a1406",
+  "pipeline": "c02bbeaed888df45c4e28c4e99dba540ad21552a",
+  "policy": "28bd48b9b71bbb2a82c718ce761d5a4220ef8e60",
+  "lean": "leanprover/lean4:v4.35.0-rc2",
+  "lean_archive_sha256": "b67d0e0ba959fc74e186f1b44aebca32d6ecb6a28f8e9a029fc4e9f73398a049",
+  "mathlib": "065356127b1dc0016f66b7283ce0ce2c4055aa55",
+  "checks": {
+    "local_clean_full_build": "passed 54 module checks, including Solution, Audit and isolated Challenge",
+    "kernel_replay_project_modules": "passed all 50 proof modules against imported environments",
+    "exported_statement_comparison": "passed pinned Lake compareAt with no definition holes; definition bodies compared recursively",
+    "exported_axiom_audit": "passed pinned Lake checkAxioms",
+    "independent_kernel_replay": "NanoDa and con-ron accepted the full official Solution export",
+    "lean_export_kernel_replay": "Lean accepted the full Solution export in a fresh kernel environment",
+    "main_dependency_closure": "audited 3982 constants; only propext, Classical.choice and Quot.sound",
+    "full_main_theorem": "proved and locally verified: KMV.main_result : LiPostle34 \u2192 KMVStatement",
+    "official_preflight": "Not run; complete source upload pending. Local proof verification is separate from the official GitHub workflow.",
+    "registration": "not submitted",
+    "publication_metadata": "Passed pinned official metadata validator; confirmed human author and maintainer; approved Apache-2.0 root LICENSE applied"
+  },
+  "scope": "Complete authorized conditional theorem LiPostle34 implies KMVStatement; LiPostle34 itself is not proved",
+  "source_version": 21,
+  "implemented": "Complete proof including finite sampling, compression, density, structural reduction, triangle classification and cover, cleaning, all eventual estimates, and main assembly",
+  "publication_readiness": "See evidence/publication-readiness.json; no official preflight, submission or registration has occurred",
+  "public_repository": "methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle"
+}

@@ -1,0 +1,504 @@
+{
+  "checked_at_utc": "2026-10-26T02:29:03.028957+00:00",
+  "scope": "Local source-policy checks; not official Palomar preflight",
+  "pass": true,
+  "files": [
+    {
+      "file": "Audit.lean",
+      "sha256": "79aef5c6bbe7e1ab3ce6892f3d708a83c09d5c51a2b8436823781d3a6679cbf7",
+      "lines": 107,
+      "bytes": 3993,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "Challenge.lean",
+      "sha256": "b0656b297e792ac19df581e853ec71de214bbd94105b2cc6c2296adc73c085df",
+      "lines": 79,
+      "bytes": 3577,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/AssemblyBounds.lean",
+      "sha256": "9a4870357940786a70e84f515d0a00134f164098f89f6490f146e5155caf69b8",
+      "lines": 93,
+      "bytes": 4565,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Auxiliary.lean",
+      "sha256": "cfe4267657feb36678a7ab103638ba8932bf50c5a979e43d62aa779498b30ca7",
+      "lines": 81,
+      "bytes": 3690,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/AuxiliaryDegrees.lean",
+      "sha256": "0ce5e0cec494b7bb0ec4f152eeffe059ba958f528b1e25a826b902ecc25f924a",
+      "lines": 114,
+      "bytes": 5685,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Basic.lean",
+      "sha256": "84800d80ef8e43ccc4b6de18ce3419d6b54c4a2bb6ce6e5cabc7853680a26df9",
+      "lines": 43,
+      "bytes": 1594,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Cleaning.lean",
+      "sha256": "a3b2ae4b9c2a148d210b571366d740e99a9c1ed5f6d7672de87b6fa8dec73d96",
+      "lines": 98,
+      "bytes": 5251,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Codegrees.lean",
+      "sha256": "0ad1c06ce61aca8c2da9c2dda02cdafedba99fdceed89c8307993840161fbaec",
+      "lines": 203,
+      "bytes": 9568,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/ColorParameters.lean",
+      "sha256": "7f5ee025460d2ee4b47aebb478843ce11da3dea0db07cce09806e341e83b371d",
+      "lines": 91,
+      "bytes": 4538,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Coloring.lean",
+      "sha256": "5f6b733d08e4ac30d612bfe627890394ad08ce92d9053e5e9732f45e584ef79f",
+      "lines": 57,
+      "bytes": 2864,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/ColoringSubset.lean",
+      "sha256": "9041ecae8e037e2be38716837e58f948fa9bf661ccb82f0a3f5bf5320d873e21",
+      "lines": 44,
+      "bytes": 2342,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Compression.lean",
+      "sha256": "ff04805184a3997b7dce70b6c828622b3b5c39d8771dc56d910439ba9d4c913c",
+      "lines": 112,
+      "bytes": 4858,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/ConfigurationCounting.lean",
+      "sha256": "f8a6697f46de818efde316826533a5e53d001534a2d9187d990efe25c7c32783",
+      "lines": 99,
+      "bytes": 4766,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/ConfigurationLoss.lean",
+      "sha256": "3fff9d9d941c1c4e9353d5dd83ba6cf86594c027140087227a76d79598e78fd6",
+      "lines": 76,
+      "bytes": 3948,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/ConfigurationMonotone.lean",
+      "sha256": "68f1d6ee5550efd62d997bd6ef57a3c862396573ef559b97f1a69d128c49d07a",
+      "lines": 76,
+      "bytes": 3350,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Deletion.lean",
+      "sha256": "e417baa85ece789df16bd7b6c268d7677c85ac466b5e0c2859bf24c1bbec1586",
+      "lines": 87,
+      "bytes": 3559,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Density.lean",
+      "sha256": "634e2f627231ccba90acc9a0cb534f53fb580101eb4bb942512dd5fb951f9d91",
+      "lines": 112,
+      "bytes": 4817,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/DensityCounting.lean",
+      "sha256": "03136171007b4deb0833d70175d1ce65fa35847d609d863d7a77c31625f01ad0",
+      "lines": 90,
+      "bytes": 4099,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/DensityStars.lean",
+      "sha256": "c0f2964cfe103a53d017c75f5c36028d8f46e9276462f5967283a611ab50f239",
+      "lines": 86,
+      "bytes": 3493,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/DensityStructure.lean",
+      "sha256": "5ce74160783ec7b5960633c8a0dd403b7ad797d9010600ef9ec23c5082398d18",
+      "lines": 93,
+      "bytes": 3860,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Entropy.lean",
+      "sha256": "a0c539bfc0b1c5fc4c840cfe58c7731883365c4831847a6f92c943f3d136bae8",
+      "lines": 65,
+      "bytes": 2397,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Expansion.lean",
+      "sha256": "1ced3f6d668295e8fde646d69284c65347927c5bef7db834da192128ed30365c",
+      "lines": 115,
+      "bytes": 5281,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/FiniteCleaning.lean",
+      "sha256": "5349fe7724176f05c79f5c0564d98e2a7320fba2350b9101198479b98c65828a",
+      "lines": 103,
+      "bytes": 5678,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/FiniteLaw.lean",
+      "sha256": "f8434450faed19d182a229bd43f8a8e187e78bc666a1b484e53d5f6a04879f09",
+      "lines": 141,
+      "bytes": 5473,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/GraphRestriction.lean",
+      "sha256": "f603bca35f3fc7c896a07912d17215b87346136db41f991dec3746aeb8e00a49",
+      "lines": 49,
+      "bytes": 2292,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/IntersectionCounting.lean",
+      "sha256": "c57e91e092b2d579215438c90100d7bd2e8b6ff4ba90fa71a0131e8170f03414",
+      "lines": 96,
+      "bytes": 4730,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/LossEnvelope.lean",
+      "sha256": "09c62aa992cdfd65f383e4bc4804a23749c4d56e4361b2a0f4ae6ddde7118691",
+      "lines": 94,
+      "bytes": 3911,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Main.lean",
+      "sha256": "485a47e990b30139dc91abfe012a25902ee8f341293d4d3b8ea058260e234928",
+      "lines": 78,
+      "bytes": 4227,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Packing.lean",
+      "sha256": "6fbbfee7ba9e1f6b929e6cafa3466424f5858b4ae38c35885f155bc80236e07d",
+      "lines": 104,
+      "bytes": 4074,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/PairConfigurations.lean",
+      "sha256": "543ddc1f3b84b9454f8f32aa30b1b47bf6006dd83908bfbd8377546001ebc53f",
+      "lines": 114,
+      "bytes": 5575,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Parameters.lean",
+      "sha256": "4aa3cfaa549ae98cac637f953ddda3347706583bacadee1d90a2e56611c1bea5",
+      "lines": 157,
+      "bytes": 8344,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/RandomDegrees.lean",
+      "sha256": "a88ace33a2c6ea287500d9a00c787ea938f9529111a21c3e9223eb7912c33444",
+      "lines": 95,
+      "bytes": 4680,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/ReducedAssembly.lean",
+      "sha256": "c29741bd2e543965ba31d0200fefdd333629ef8e3ef9b070b5d69a1438fa3357",
+      "lines": 71,
+      "bytes": 4044,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Reduction.lean",
+      "sha256": "e1df0ae2257c60bbd6a3d4b8b5afd8213902391cfaaec8b16366fe7596b07743",
+      "lines": 113,
+      "bytes": 5385,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/RestrictedSampling.lean",
+      "sha256": "0f9025e27675824a8d20e514a5b746203bb0d5777656e648b75121b010cff755",
+      "lines": 61,
+      "bytes": 2728,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Sampling.lean",
+      "sha256": "3c55b739821aeee2d0e291b975e89dcc9114de2ec44c52fcdca54d32c5c5210d",
+      "lines": 39,
+      "bytes": 1993,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/SamplingCap.lean",
+      "sha256": "384c20743a6d9a07c60a0c08dd447e045bb66978e315db7da99281a0ef9e91ef",
+      "lines": 131,
+      "bytes": 5139,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/SamplingCleaning.lean",
+      "sha256": "2051eee9ac1c0012d5c66217c07c003fec6d2a4f86677a547058ab396919f9af",
+      "lines": 95,
+      "bytes": 5312,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/SamplingEntropy.lean",
+      "sha256": "6ab7bfe5da7729ee4ae57c0949aba37a4a101aedbc7c04e2b61069b2fac6f913",
+      "lines": 96,
+      "bytes": 4233,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/SamplingIndependent.lean",
+      "sha256": "cf13b73797f6674daf14e748a3fe391da3e3fe652e73bf62450cf8e068faf815",
+      "lines": 104,
+      "bytes": 3870,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/SamplingMarginals.lean",
+      "sha256": "ea56fd94c5d977567141dcfeafcddebf9008f48dd0041037c459e056b7eb3f9c",
+      "lines": 100,
+      "bytes": 4351,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/SamplingParameters.lean",
+      "sha256": "129040ff516487b89c616eea2affff024b534c5dc96baedf07925bbb3dba250f",
+      "lines": 97,
+      "bytes": 4417,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/SamplingProcess.lean",
+      "sha256": "ea72ff711b35d629b500818888455104f931d4d6e82370981b2638c70145b13a",
+      "lines": 160,
+      "bytes": 5806,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/SamplingProducts.lean",
+      "sha256": "4e07160b0a48d56152f1d9ea3581b9df8c1e420bbf2f74b0d2d8bf06506f049f",
+      "lines": 136,
+      "bytes": 6058,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Scales.lean",
+      "sha256": "e583092cb5114b177e379dccfc392c767b06feeba76ca4bca2ac7df59a021280",
+      "lines": 129,
+      "bytes": 5900,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Statements.lean",
+      "sha256": "488eb20183e78daed7fbc4344b2fc95a5705a55cb28368d7cdf169161f489b35",
+      "lines": 47,
+      "bytes": 2235,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/TotalLoss.lean",
+      "sha256": "76533d64ef1a4ab03ee5dee467330abd79d60e5f0763ea36b828c3f4ffe279ee",
+      "lines": 116,
+      "bytes": 6100,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/TriangleClassification.lean",
+      "sha256": "799feb5f2e06fe45e39dc010f6a2588e4781bdd113197d9c9625b6c82d3f661e",
+      "lines": 144,
+      "bytes": 7299,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/TriangleCleaning.lean",
+      "sha256": "72014e8f7d81e8cd62bab494db8de94800d3a93a498c3003d04feea0b0381813",
+      "lines": 72,
+      "bytes": 3295,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/TriangleCover.lean",
+      "sha256": "a52894eb7a8e5ce59e0cdc8150167758831c6bd5c622dce9a39dd6d92e98b39c",
+      "lines": 137,
+      "bytes": 7935,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Triangles.lean",
+      "sha256": "d722053a6166eda635534501b4a7cf339aad67e63245b8cf366ec25d307dc6ae",
+      "lines": 41,
+      "bytes": 1757,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV/Trimming.lean",
+      "sha256": "2a47ac2415c070257afaa960a715289da9f5e2d22f484505b7d6461ef7a80028",
+      "lines": 105,
+      "bytes": 4550,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "KMV.lean",
+      "sha256": "acbe8f0bdbe728d7785ea8046d84a1740d50765f474b17d02f5ec5c9741c13e7",
+      "lines": 18,
+      "bytes": 521,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "Solution.lean",
+      "sha256": "d3b5ccde95a4782e2ccae706605a943721d62cda044610cc20bf40ffe763a203",
+      "lines": 3,
+      "bytes": 107,
+      "symlink": false,
+      "module_header": true,
+      "lakefile_exception": false
+    },
+    {
+      "file": "tools/frontend/lakefile.lean",
+      "sha256": "d26de31c698c395502f12ee27151ee80b46475cb9379269d9ebffd898603eab1",
+      "lines": 18,
+      "bytes": 904,
+      "symlink": false,
+      "module_header": false,
+      "lakefile_exception": true
+    }
+  ],
+  "challenge_placeholders": 1,
+  "proof_placeholders": 0
+}

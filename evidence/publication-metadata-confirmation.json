@@ -1,7 +1,17 @@
 {
-  "human_formalization_authors": ["Abhishek Methuku"],
-  "responsible_maintainers": ["Abhishek Methuku"],
+  "confirmed_at_utc": "2026-10-26T14:58:57.138950+00:00",
+  "basis": "User explicitly confirmed the exact proposed attribution and license choices in the current conversation",
+  "human_formalization_authors": [
+    "Abhishek Methuku"
+  ],
+  "responsible_maintainers": [
+    "Abhishek Methuku"
+  ],
   "software_license": "Apache-2.0",
+  "license_file": "LICENSE",
+  "authorization_relationship": "I am a responsible author or maintainer",
+  "human_proof_review_claimed": false,
+  "public_repository": "methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle",
   "official_preflight": "not run",
   "registration": "not submitted"
 }

@@ -1,0 +1,33 @@
+{
+  "checked_at_utc": "2026-10-26T14:58:57.138950+00:00",
+  "proof_verification_commit": "cf89ddcbabe790cbdedaa95f39170b707b2db751",
+  "scope": "Publication preparation only; no new Lean compilation or kernel replay in this resumed session",
+  "build_input_files_compared": 62,
+  "build_input_hashes_match_verified_snapshot": true,
+  "changes": [
+    "Applied confirmed human author and maintainer Abhishek Methuku",
+    "Applied approved Apache-2.0 software license as root LICENSE",
+    "Retained Codex generation disclosure and absence of claimed human proof review",
+    "Confirmed all 62 recorded build inputs are unchanged"
+  ],
+  "metadata_status": "Passed pinned official metadata validator; all three missing fields resolved",
+  "metadata_errors": [],
+  "public_repository": "methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle",
+  "authorization_relationship": "I am a responsible author or maintainer",
+  "workflow": ".github/workflows/palomar-preflight.yml",
+  "comparator_config": "comparator.json",
+  "pipeline_commit": "c02bbeaed888df45c4e28c4e99dba540ad21552a",
+  "workflow_mode": "full",
+  "official_preflight": "not run",
+  "palomar_verification": "not started",
+  "palomar_registration": "not submitted",
+  "policy_url": "https://github.com/PalomarRegistry/PalomarPolicy/blob/main/CONTRIBUTING.md",
+  "policy_text_sha256": "86865671b28515a9ba79202eec0c58dadd23dc6d832532bc01a8cdeb845ea401",
+  "agent_protocol_url": "https://submit.palomar-registry.org/llms.txt",
+  "software_license": "Apache-2.0; approved and applied",
+  "remaining_requirements": [
+    "Complete public source upload",
+    "Full official Palomar mechanical preflight at exact public commit",
+    "Palomar verification, editorial review and final registration"
+  ]
+}

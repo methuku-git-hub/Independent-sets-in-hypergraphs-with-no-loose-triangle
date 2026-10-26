@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-10-26T02:34:08.848668+00:00",
+  "standalone_lean": "fails application-location discovery; unmodified Lake frontend used at trustLevel=0",
+  "sandbox_probe": {
+    "command": [
+      "bwrap",
+      "--ro-bind",
+      "/",
+      "/",
+      "--unshare-net",
+      "--die-with-parent",
+      "/bin/true"
+    ],
+    "exit_code": 1,
+    "stderr": "bwrap: Creating new namespace failed: Operation not permitted"
+  },
+  "sandbox_disabled": false,
+  "alternative": "Read-only proof-export comparison and kernel validation; no configuration evaluation or source build in this route",
+  "official_preflight": "not run"
+}
