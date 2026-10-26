@@ -4,7 +4,7 @@
 
 The user selected the conditional target: `LiPostle34 → KMVStatement`.
 The external premise is precisely manuscript Theorem 2.1, the normalized
-ordinary-coloring form for edge sizes 3 and 4. It has an absolute positive
+ordinary vertex-coloring form for hypergraphs with edge sizes 3 and 4. It has an absolute positive
 constant and degree upper bounds D3,D4 at least 8. Li–Postle itself is not
 proved or imported as an axiom. No further external theorem is permitted as
 an unproved hypothesis in the main result.
@@ -130,11 +130,11 @@ are compared recursively. The same exported proof data passes NanoDa, con-ron,
 and Lean's kernel from a fresh exported environment. Exact export hashes,
 commands and exit codes are in `evidence/export-validation.json`.
 
-Remaining external work: an authorized public repository, approved software
-license, confirmed responsible maintainer and authorization relationship,
-Palomar's full reusable workflow on the exact public commit, user authentication
-and final submission, automated editorial review, and explicit registration.
-These are not claimed as complete by local verification.
+Publication, attribution, licence, and responsible-maintainer confirmation are
+complete. The official full preflight passed at commit `8c1ffa95ef08c6788434011dbb0bc794884e8bb8`;
+see `evidence/palomar-preflight-8c1ffa95.json`. The final documentation and comment revision
+requires its own passing full workflow at its exact commit. User authentication,
+submission, automated editorial review, and explicit registration remain.
 
 ## Verification infrastructure and external status
 
@@ -160,7 +160,7 @@ build. It does not establish Palomar's full sandboxed workflow result.
 Abhishek Methuku has confirmed the human formalization author and responsible
 maintainer roles and approved Apache-2.0 for the formalization software. The
 root license is applied and the pinned Palomar metadata validator passes.
-The public repository has been created. Complete official preflight, human
-review, editorial review and registration remain pending. `Solution.lean` supplies the complete
-conditional proof.
+The public repository is complete and the official full preflight above passed.
+No human proof-source review is claimed. Editorial review and registration
+remain pending. `Solution.lean` supplies the complete conditional proof.
 Prior checkpoints are preserved as historical evidence.

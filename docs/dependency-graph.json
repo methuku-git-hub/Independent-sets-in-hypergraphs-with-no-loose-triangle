@@ -77,7 +77,7 @@
     },
     {
       "id": "li_postle",
-      "source": "Manuscript v21 Theorem 2.1, normalized 3/4-edge ordinary-coloring form of Li\u2013Postle v3 Theorem 1.4",
+      "source": "Manuscript v21 Theorem 2.1, normalized ordinary vertex-coloring specialization to hypergraphs with edges of sizes 3 and 4 of Li\u2013Postle v3 Theorem 1.4",
       "depends_on": [],
       "status": "explicit permitted hypothesis KMV.LiPostle34; not proved"
     },

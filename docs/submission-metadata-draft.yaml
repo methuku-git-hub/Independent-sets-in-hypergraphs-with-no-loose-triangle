@@ -2,7 +2,16 @@
 version: v0.4
 project:
   name: Independent sets in hypergraphs with no loose triangle
-  description: Conditional Lean formalisation assuming the explicit Li–Postle 3/4-edge coloring bound.
+  description: >-
+    Conditional Lean formalisation of the mixed-rank independent-set theorem of
+    Ayush Basu, Abhishek Dhawan and Abhishek Methuku. Assuming the explicitly stated
+    normalized Li–Postle vertex-coloring bound for triangle-free hypergraphs with edges
+    of sizes 3 and 4, for every fixed integer r >= 3 there are constants c > 0
+    and N such that every n-vertex hypergraph with n >= N, edge sizes between 3
+    and r, and no loose triangle has an independent set of size at least
+    c n^(2/3) (log log n)^(1/3). No linearity assumption is imposed.
+    The implication is proved in Lean; the Li–Postle premise and the manuscript's
+    Ramsey corollary are not proved in this development.
   authors:
   - Abhishek Methuku
   license: Apache-2.0
@@ -21,6 +30,7 @@ sources:
   - Abhishek Dhawan
   - Abhishek Methuku
   type: paper
+  id: https://github.com/methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle/blob/8c1ffa95ef08c6788434011dbb0bc794884e8bb8/manuscript/KMV_proof.tex
   relationship: formalizes
   note: Working manuscript version 21; Theorem 1.3 is the target, conditional on manuscript Theorem 2.1.
   license: unknown
@@ -29,19 +39,43 @@ sources:
   - Lina Li
   - Luke Postle
   id: https://arxiv.org/abs/2202.02839v3
-  relationship: background
-  note: The normalized ordinary-coloring specialization is an explicit hypothesis, not proved here.
+  type: paper
+  relationship: other
+  note: Theorem 1.4 of arXiv v3 is the literature dependency. Its normalized ordinary vertex-coloring specialization is stated as manuscript Theorem 2.1 and encoded as the explicit hypothesis LiPostle34. Neither the general theorem nor its normalization is proved here.
+- title: 'Hypergraph Ramsey numbers: Triangles versus cliques'
+  authors:
+  - Alexandr Kostochka
+  - Dhruv Mubayi
+  - Jacques Verstraete
+  type: paper
+  id: https://doi.org/10.1016/j.jcta.2013.04.009
+  relationship: adapts
+  note: Theorem 3.1 gives the earlier mixed-rank independent-set bound n^(2/3)/(8r^3), and Section 3 supplies expandable-set compression ideas adapted through the working manuscript. The relevant compression and counting estimates are proved in this development, not assumed as extra hypotheses.
 status:
-  scope: The complete conditional theorem LiPostle34 implies KMVStatement is proved, including all dependencies
-    of this implication. The full mixed-rank n^(2/3)(log log n)^(1/3) conclusion is retained. LiPostle34
-    is an explicit authorized external hypothesis, not a proved theorem or custom axiom. The Ramsey corollary
-    is outside this primary target.
+  scope: >-
+    Assuming LiPostle34, for every integer r >= 3 there exist c > 0 and N such
+    that every n-vertex hypergraph with n >= N, edge sizes between 3 and r,
+    and no loose triangle has an independent set of size at least
+    c n^(2/3) (log log n)^(1/3). The implication and all of its proof obligations
+    are proved. LiPostle34 is an explicit hypothesis, not a custom axiom. The
+    manuscript derives the Ramsey bound O_r(t^(3/2)/sqrt(log log t)), resolving
+    the 2013 Kostochka–Mubayi–Verstraëte conjecture; this Ramsey deduction is
+    outside the submitted Lean target.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
   - propext
   - Classical.choice
   - Quot.sound
+  main_results:
+  - declaration: KMV.main_result
+    file: KMV/Main.lean
+    sorry_count: 0
+    axioms: [propext, Classical.choice, Quot.sound]
+    comparator_config: comparator.json
+    literature_dependencies:
+    - statement: KMV.LiPostle34, the normalized ordinary vertex-coloring bound for triangle-free hypergraphs with edge sizes 3 and 4 and real degree upper bounds D3,D4 >= 8.
+      source: Lina Li and Luke Postle, The chromatic number of triangle-free hypergraphs, arXiv:2202.02839v3, Theorem 1.4; normalized as working-manuscript Theorem 2.1.
 automation:
   methods:
   - method: agent
@@ -57,12 +91,19 @@ fidelity:
     theorem. The final sufficient parameters use T=(log n)^(1/100), beta=n^(-3/10) and thresholds with
     (log n)^(-1/2), with all eventual estimates proved. Natural ceilings are bounded explicitly.
 review:
-  status: Automated statement comparison, clean local Lean build, axiom-closure audit, and NanoDa, con-ron
-    and Lean exported-data kernel checks passed. No human review, official Palomar preflight, editorial
-    review or registration.
+  status: Self-assessed with automated mechanical checks; no human proof-source review or Palomar editorial review is claimed.
   reviewers: []
-  notes: Verification evidence is source- and export-hash bound. Local exported-data checking is separate
-    from the required full public GitHub Actions workflow.
+  notes: >-
+    The official full Palomar preflight passed at source commit
+    8c1ffa95ef08c6788434011dbb0bc794884e8bb8, with mechanical-report status pass,
+    errors [], and warnings [], on 2026-10-26. The run is
+    https://github.com/methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle/actions/runs/40351845371.
+    The current revision improves documentation, metadata, and Lean comments
+    without changing proof terms, definitions, dependencies, or Comparator
+    configuration. Its exact commit
+    must pass the full workflow before intake. Earlier local reports and the
+    bundled archive are historical evidence for their recorded revisions.
+    Palomar submission, editorial review, and registration are separate steps.
 alignment:
   namespace: KMV
   statements:
