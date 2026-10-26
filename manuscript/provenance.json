@@ -1,5 +1,19 @@
 {
   "title": "Independent sets in hypergraphs with no loose triangle",
-  "authors": ["Ayush Basu", "Abhishek Dhawan", "Abhishek Methuku"],
-  "target_scope": "LiPostle34 implies Theorem 1.3"
+  "authors": [
+    "Ayush Basu",
+    "Abhishek Dhawan",
+    "Abhishek Methuku"
+  ],
+  "source_file": "manuscript/KMV_proof.tex",
+  "sha256": "95204b00e9f3dd183b1d0542d8c9a9fe68e80119f86f0de2ae2729e332685999",
+  "library_version": 21,
+  "target": "Theorem 1.3 (label thm:main)",
+  "secondary_target": "Theorem 1.2 (label thm:Ramsey)",
+  "published_version": null,
+  "provenance": "User working manuscript, not identified as a published or arXiv version",
+  "snapshot_date": "2026-10-25",
+  "rights": "Not relicensed. The user authorized uploading the project files, including this manuscript snapshot, to the public GitHub repository on 2026-10-26.",
+  "library_file_id": "libfile_a37e75ba71e4819182310a08a134dae1",
+  "target_scope": "LiPostle34 implies Theorem 1.3; original unconditional target deferred by user instruction"
 }

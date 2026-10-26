@@ -1,0 +1,726 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,enumitem}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{titlesec}
+% Compact run-in subsection headings, following amsart.
+\makeatletter
+\titleformat{\subsection}[runin]
+  {\normalfont\bfseries}{\thesubsection.}{0.5em}{}[\@addpunct.]
+\makeatother
+\titlespacing*{\subsection}{0pt}
+  {0.5\baselineskip plus 0.7\baselineskip}{0.5em}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\dd}{\mathrm d}
+\title{Independent sets in hypergraphs with no loose triangle}
+\author{Ayush Basu \qquad Abhishek Dhawan \qquad Abhishek Methuku\\[0.5em]
+\small Department of Mathematics\\
+\small University of Illinois Urbana-Champaign}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+A loose triangle consists of three edges whose pairwise intersections are distinct single vertices. An independent set in a hypergraph is a set of vertices containing no edge. We prove that, for every fixed $r\ge3$, there is a constant $c_r>0$ such that every sufficiently large $n$-vertex hypergraph with no loose triangle and with edge sizes between $3$ and $r$ has an independent set of size at least $c_r n^{2/3}(\log\log n)^{1/3}$. This implies that the Ramsey number of the $r$-uniform loose triangle versus the complete $r$-uniform hypergraph on $t$ vertices is at most $C_r t^{3/2}/\sqrt{\log\log t}$ for a constant $C_r>0$ and all sufficiently large $t$, proving a conjecture of Kostochka, Mubayi and Verstra\"ete from 2013. The proof chooses vertices randomly while avoiding pairs that lie in many edges, and then deletes vertices to eliminate all triples of edges for which each pair intersects outside the third edge. A theorem of Li and Postle then yields the required independent set.
+\end{abstract}
+
+\section{Introduction}
+
+A hypergraph $H$ consists of a finite vertex set $V(H)$ and a collection $E(H)$ of distinct subsets of $V(H)$, called edges. If every edge has size $r$, we call $H$ an $r$-uniform hypergraph, or an $r$-graph. A graph is a $2$-graph. A \emph{loose triangle} consists of three distinct edges $e,f,g$ satisfying
+\[
+ |e\cap f|=|f\cap g|=|g\cap e|=1
+ \quad\text{and}\quad e\cap f\cap g=\varnothing.
+\]
+We use this definition also when the edges have different sizes. The $r$-uniform loose triangle is denoted by $C_3$, with $r$ understood from the context. An $r$-graph is $C_3$-free if it contains no loose triangle.
+
+A set of vertices is \emph{independent} if it contains no edge. The largest size of an independent set in $H$ is its \emph{independence number}, denoted by $\alpha(H)$. Write $K_t^{(r)}$ for the complete $r$-graph on $t$ vertices, whose edges are all $r$-element subsets of its vertex set. The Ramsey number $R(C_3,K_t^{(r)})$ is the least integer $n$ such that every $n$-vertex $r$-graph contains a loose triangle or an independent set of size $t$. Equivalently, every assignment of the colors red and blue to the edges of $K_n^{(r)}$ contains a red $C_3$ or a blue $K_t^{(r)}$.
+
+The upper bound of Ajtai, Koml\'os and Szemer\'edi~\cite{AKS} and the lower bound of Kim~\cite{Kim} establish the order of magnitude of the graph Ramsey number:
+\[
+ R(C_3,K_t^{(2)})\asymp\frac{t^2}{\log t}.
+\]
+Kostochka, Mubayi and Verstra\"ete~\cite[Theorem 1.1]{KMV} studied the corresponding problem for uniform hypergraphs. They proved that there are constants $a_3,b_3>0$ such that, for all sufficiently large $t$,
+\[
+ a_3\frac{t^{3/2}}{(\log t)^{3/4}}
+ \le R(C_3,K_t^{(3)})\le b_3t^{3/2}.
+\]
+For every fixed $r\ge4$, they obtained constants $a_r,b_r>0$ such that
+\[
+ \frac{t^{3/2}}{(\log t)^{3/4+a_r/\sqrt{\log\log t}}}
+ \le R(C_3,K_t^{(r)})\le b_rt^{3/2}.
+\]
+Thus their bounds determine the exponent of $t$ and leave a gap of a logarithmic factor. They proposed the following conjecture~\cite[Conjecture 1.1]{KMV}.
+
+\begin{conjecture}[Kostochka--Mubayi--Verstra\"ete]
+For every fixed integer $r\ge3$,
+\[
+ R(C_3,K_t^{(r)})=o(t^{3/2})\qquad\text{as }t\to\infty.
+\]
+\end{conjecture}
+
+The following theorem proves the conjecture.
+
+\begin{theorem}\label{thm:Ramsey}
+For every integer $r\ge3$ there is a constant $C_r>0$ such that, for all sufficiently large $t$,
+\[
+ R(C_3,K_t^{(r)})\le C_r\frac{t^{3/2}}{\sqrt{\log\log t}}.
+\]
+\end{theorem}
+
+We establish the following stronger statement, which allows edges of different sizes.
+
+\begin{theorem}\label{thm:main}
+For every integer $r\ge3$ there is a constant $c_r>0$ such that the following holds for all sufficiently large $n$. If $H$ is an $n$-vertex hypergraph with no loose triangle and every edge of $H$ has size between $3$ and $r$, then
+\[
+ \alpha(H)\ge c_r n^{2/3}(\log\log n)^{1/3}.
+\]
+\end{theorem}
+
+A hypergraph is \emph{linear} if any two distinct edges intersect in at most one vertex. Kostochka, Mubayi and Verstra\"ete~\cite[Theorem 1.2]{KMV} proved that every sufficiently large $n$-vertex linear $3$-graph $H$ with no loose triangle satisfies the stronger bound $\alpha(H)\ge c n^{2/3}(\log n)^{1/3}$, where $c>0$ is an absolute constant. Theorem~\ref{thm:main} removes the linearity assumption, with $\log\log n$ in place of $\log n$, and applies to all edge sizes between $3$ and a fixed $r$.
+
+To see why Theorem~\ref{thm:main} implies Theorem~\ref{thm:Ramsey}, let $n=\lceil C_r t^{3/2}/\sqrt{\log\log t}\rceil$. As $t\to\infty$, we have $\log\log n\sim\log\log t$. Theorem~\ref{thm:main} therefore gives an independent set of size at least $t$ in every $C_3$-free $r$-graph on $n$ vertices, provided $C_r$ is sufficiently large. Increasing $C_r$ to absorb rounding gives Theorem~\ref{thm:Ramsey}.
+
+\subsection{Related results}\label{sec:related}
+The \emph{degree} of a vertex is the number of edges containing it, and the \emph{maximum degree} is the largest vertex degree. Verstra\"ete and Wilson~\cite[Theorem 1]{VW} proved that, for every fixed $r\ge3$, every $n$-vertex linear $r$-graph $H$ with no loose triangle and maximum degree $\Delta\ge2$ satisfies $\alpha(H)\ge c_r n(\log\Delta/\Delta)^{1/(r-1)}$, where $c_r>0$ depends only on $r$.
+
+A \emph{proper coloring} of a hypergraph assigns colors to its vertices so that no edge has all its vertices of one color. The minimum number of colors required is the \emph{chromatic number}, denoted by $\chi(H)$.
+
+Cooper and Mubayi~\cite[Theorem 2]{CM} proved that every triangle-free $3$-graph $H$ with maximum degree $\Delta$ satisfies
+\[
+ \chi(H)\le C\left(\frac{\Delta}{\log\Delta}\right)^{1/2}
+\]
+for an absolute constant $C>0$ and all sufficiently large $\Delta$. Here a \emph{triangle} consists of three distinct edges $e,f,g$ and three distinct vertices $x,y,z$ such that
+\[
+ \{x,y\}\subseteq e,\qquad \{y,z\}\subseteq f,\qquad
+ \{z,x\}\subseteq g,\qquad
+ \{x,y,z\}\cap e\cap f\cap g=\varnothing.
+\]
+Equivalently, each of
+\[
+ (e\cap f)\setminus g,\qquad
+ (f\cap g)\setminus e,\qquad
+ (g\cap e)\setminus f
+\]
+is nonempty. Note that every loose triangle is a triangle, and the two notions coincide in linear hypergraphs.
+
+As an application, Cooper and Mubayi~\cite[Section 1.2]{CM} obtained the bound $\alpha(H)\ge c n^{2/3}(\log n)^{1/3}$ for every sufficiently large $n$-vertex triangle-free $3$-graph $H$, where $c>0$ is an absolute constant.
+
+Li and Postle~\cite[Theorem 1.4]{LP} extended the coloring theorem of Cooper and Mubayi to hypergraphs with edge sizes between $2$ and any fixed integer $r\ge3$. In particular, every triangle-free $r$-graph $H$ with sufficiently large maximum degree $\Delta$ satisfies
+\[
+ \chi(H)\le C_r\left(\frac{\Delta}{\log\Delta}\right)^{1/(r-1)},
+\]
+where $C_r$ depends only on $r$. We state the case with edges of sizes three and four in Theorem~\ref{thm:LP}.
+
+\subsection{Our approach}\label{sec:approach}
+Our proof reduces the problem to a hypergraph to which the theorem of Li and Postle applies. We first replace some edges by smaller subsets, using a reduction from~\cite{KMV} that preserves the absence of loose triangles and makes every independent set in the new hypergraph independent in the original one. When $r\ge4$, these replacements can produce several edge sizes even when the original hypergraph is uniform, which explains the formulation of Theorem~\ref{thm:main}.
+
+We then choose vertices randomly, forbidding the simultaneous choice of pairs contained in many edges, using Johansson's entropy method~\cite{Johansson}, as adapted in~\cite{Dhawan}; see also~\cite{MS} for a related sampling procedure. The main additional step is a selective deletion argument: we delete vertices from the unions of certain intersecting edge pairs. For a $3$-graph, these deletions eliminate every triangle. For larger edge sizes, we also remove all edges of size at least five by deleting a small proportion of the chosen vertices; the remaining triangles involving edges of size four require a separate counting argument. We also remove vertices of large degree in the chosen set. The remaining hypergraph has enough vertices relative to its maximum degrees for the theorem of Li and Postle to yield the required bound. Section~\ref{sec:overview} explains which pairs are used and how the remaining triangles are counted.
+
+\subsection{Notation}
+All logarithms are natural. For positive functions $f,g$, we write $f=O(g)$ if $f/g$ is bounded above, $f=o(g)$ if $f/g\to0$, $f\asymp g$ if $f/g$ is bounded above and below by positive constants, and $f\sim g$ if $f/g\to1$. A subscript specifies the parameters on which the comparison constants may depend. Such parameters are fixed in every limiting statement.
+
+A $k$-set is a set of $k$ vertices; pairs and triples are sets of two and three vertices, respectively. We sometimes abbreviate $\{a,b\}$ to $ab$ and $\{a,b,c\}$ to $abc$. Two vertices of a graph are adjacent if their pair is an edge, and each is then a neighbor of the other. We write $\deg_G(v)$ for the degree of $v$ in a graph $G$.
+
+For $S\subseteq V(H)$, the induced hypergraph $H[S]$ has vertex set $S$ and consists of the edges of $H$ contained in $S$. Thus deleting vertices removes edges that meet the deleted set; it does not shorten those edges. We write $E_j(H)$ for the edges of size $j$ and $m_j(H)=|E_j(H)|$. For a set $X\subseteq V(H)$, let
+\[
+ \dd_j(X,H)=|\{e\in E_j(H):X\subseteq e\}|.
+\]
+The \emph{$j$-degree} of a vertex $v$ is $\dd_j(v,H)=\dd_j(\{v\},H)$. Put
+\[
+ \Delta_j(H)=\max_{v\in V(H)}\dd_j(v,H),
+ \qquad d_j(H)=\frac{j m_j(H)}{|V(H)|}.
+\]
+These are the maximum and average degrees arising from edges of size $j$; both are zero if $H$ has no edges of size $j$. For $|X|\ge2$, the \emph{codegree of $X$ with respect to edges of size $j$} is $\dd_j(X,H)$, the number of such edges containing $X$. We omit $H$ when it is clear from the context. A hypergraph is an \emph{antichain} if no edge properly contains another edge.
+
+We write $\Pp$ for probability and $\E$ for expectation. For an event $F$, its indicator $\ind_F$ is $1$ when $F$ occurs and $0$ otherwise.
+
+\section{Overview of the proof}\label{sec:overview}
+
+\subsection{The coloring theorem and the obstacle to applying it}
+A \emph{color class} is the set of vertices assigned a particular color in a proper coloring. Each color class is independent, so
+\[
+ \alpha(H)\ge\frac{|V(H)|}{\chi(H)}.
+\]
+The following is the special case of Li and Postle's theorem that we need.
+
+\begin{theorem}[{Li--Postle~\cite[Theorem 1.4]{LP}}]\label{thm:LP}
+There is an absolute constant $C$ with the following property. Let $K$ be a triangle-free hypergraph in which every edge has size $3$ or $4$. If $D_j\ge\max\{8,\Delta_j(K)\}$ for $j=3,4$, then
+\[
+ \chi(K)\le C\max\left\{
+ \left(\frac{D_3}{\log D_3}\right)^{1/2},
+ \left(\frac{D_4}{\log D_4}\right)^{1/3}
+ \right\}.
+\]
+\end{theorem}
+
+To obtain this form from~\cite[Theorem 1.4]{LP}, for each $j=3,4$ adjoin $\lceil D_j\rceil$ edges of size $j$ on new vertices, with a single common vertex and otherwise disjoint vertices. Use disjoint sets of new vertices for the two constructions. The added edges contain no triangle and make the maximum $j$-degree equal to $\lceil D_j\rceil$. Restrict the resulting coloring to $K$ and absorb rounding into the constant. This argument also applies when $K$ has no edges of one of the two sizes.
+
+The difficulty is that a hypergraph with no loose triangle can contain many triangles in the above sense. After replacing edges by smaller subsets, we seek an induced hypergraph with no triangles and with enough vertices relative to its maximum degrees that Theorem~\ref{thm:LP} gives the required independent set. The bounds we need are described at the end of this overview.
+
+\subsection{Choosing vertices while avoiding pairs of large codegree}
+First consider a $3$-graph $H$ with no loose triangle. An edge \emph{survives in} a vertex set $I$ if it is contained in $I$; a collection of edges survives if every edge in the collection does. Choosing vertices independently creates a difficulty when a pair belongs to many edges: conditional on choosing that pair, many edges containing it may survive. Fix a threshold $L\ge6$. Define a graph $G$ on $V(H)$ by joining $x$ and $y$ when $\dd_3(\{x,y\},H)>L$. Let $H_0$ be the hypergraph on $V(H)$ obtained by removing every edge of $H$ that contains an edge of $G$. We choose an independent set $I$ of $G$. Every edge surviving in $I$ belongs to $H_0$, and every pair in such an edge is contained in at most $L$ edges of $H$.
+
+The absence of loose triangles gives two useful properties of $G$. First, $G$ is triangle-free. Indeed, three pairs forming a graph triangle could be extended to three edges of $H$ by choosing distinct additional vertices outside that triangle, producing a loose triangle. Second, the vertices of every edge $e$ of $H_0$ are pairwise nonadjacent in $G$, and no two have a common neighbor in $G$. For if $x,y\in e$ had a common neighbor $z$, then $z\notin e$. The pairs $xz$ and $yz$ could be extended to edges of $H$ using distinct additional vertices outside $e\cup\{z\}$. These two edges and $e$ would form a loose triangle. In both arguments, $L\ge6$ ensures that the required additional vertices can be chosen.
+
+Call a vertex set \emph{separated in $G$} if its vertices are pairwise nonadjacent in $G$ and no two have a common neighbor in $G$. Let $A$ be an upper bound on the maximum degree of $G$, and let $p$ be the initial weight assigned to each vertex in the procedure below. For the parameters used in our application, we construct a random independent set $I$ of $G$ such that every vertex is chosen with probability at least $p/2$, while
+\begin{equation}\label{eq:overview-moment}
+ \Pp(S\subseteq I)\le p^{|S|}
+ \qquad\text{for every separated set }S.
+\end{equation}
+In our application, $p\asymp\log A/A$. Choosing each vertex independently with probability $p$ satisfies both probability bounds, but may select both endpoints of an edge of $G$. We need these bounds together with independence in $G$: the latter excludes every pair of large codegree, the marginal lower bound gives a lower bound on the expected size of $I$, and~\eqref{eq:overview-moment} bounds the expected number of configurations requiring further deletions. The sampling lemma achieves all three properties simultaneously at this density.
+
+The procedure assigns initial weight $p$ to every vertex and processes the vertices in a fixed order. Fix a threshold $\beta$ with $0<p<\beta\le1/2$. An unprocessed vertex is \emph{frozen} when its weight reaches or exceeds $\beta$; its weight is then kept unchanged, and it is never selected. At the turn of an unfrozen vertex of weight $a$, select it with probability $a$. If it is selected, set the weights of its later, unfrozen neighbors to zero. Otherwise, divide those weights by $1-a$. Freeze every vertex whose updated weight is at least $\beta$, retaining its updated weight. The conditional expected weight of a neighbor whose current weight is $b$ is unchanged, because
+\[
+ a\cdot0+(1-a)\frac{b}{1-a}=b.
+\]
+
+Freezing can reduce a vertex's probability of being selected. Lemma~\ref{lem:sampling} bounds this reduction by $2Ap^2/(\log(\beta/p)-1)$, which is at most $p/2$ for our parameters. For~\eqref{eq:overview-moment}, follow the weights on a separated set, replacing a vertex's weight at its turn by its selection indicator unless it is frozen. Each step changes at most one of these quantities and preserves its conditional expectation. Their expected product remains $p^{|S|}$, and the final product equals $1$ whenever all of $S$ is selected. Section~\ref{sec:sampling} proves both estimates in detail.
+
+\subsection{Which intersecting edges need to be removed?}
+Even after all pairs of large codegree have been avoided, two remaining edges can meet in two vertices. It is tempting to remove one vertex from every such pair of edges. The problem is that their union need not be separated, so~\eqref{eq:overview-moment} need not apply to it.
+
+For edges of size three, a more selective deletion suffices. Besides a loose triangle, the only possibilities for a triangle are, up to relabeling,
+\[
+ \{\{a,b,c\},\{a,b,d\},\{c,d,e\}\}
+ \quad\text{and}\quad
+ \{\{a,b,c\},\{a,b,d\},\{a,c,d\}\},
+\]
+where the displayed vertices are distinct. In either case, every pair in $\{a,b,c,d\}$ lies together in one of the three edges. If the three edges belong to $H_0$, each is separated, so $\{a,b,c,d\}$ is also separated. Consequently, the pair of edges $\{a,b,c\},\{a,b,d\}$ survives with probability at most $p^4$. Deleting one vertex from the union of each surviving pair of edges that meet in two vertices and have a separated union eliminates every triangle formed by edges of size three. Lemma~\ref{lem:classification} extends this argument to edges of size four.
+
+For general $r$, we first replace edges by smaller subsets, following Kostochka, Mubayi and Verstra\"ete. Each replacement removes all edges containing a chosen set and adds that set as an edge. Lemma~\ref{lem:compression} specifies which sets may be chosen and proves that no loose triangle is created and every independent set after a replacement is independent before it. The final hypergraph has no edge properly containing another, each triple belongs to $O_r(1)$ edges of size four, and there are $O_r(n^2)$ edges of each size at least four. We then define $G$ using separate pair-codegree thresholds for edges of sizes three and four. Every edge containing no edge of $G$ is again separated. For our choice of $p$, the expected number of surviving edges of size at least five is $o(pn)$, so deleting one vertex from each of these edges leaves only edges of sizes three and four at an expected cost of $o(pn)$ vertices. For edges of size four, the corresponding upper bound is $O_r(n^2p^4)$, but $n^2p^4/(pn)=np^3\to\infty$ for our choice of $p$, so this estimate does not justify deleting one vertex from every such edge.
+
+We delete one vertex from the union of each surviving pair of edges that meet in two vertices and have a separated union. We also delete one vertex from the union of each surviving pair of size-four edges that meet in three vertices. Lemma~\ref{lem:classification} classifies the triangles that contain neither type of pair. In each remaining type, an edge of size four contains a triple chosen from the union of the other two edges. There are only a bounded number of such triples, and each belongs to a bounded number of size-four edges. This bounds the number of these triangles. For the pairs meeting in three vertices and for these remaining triangles, we use the weaker bound
+\[
+ \Pp(S\subseteq I)\le\beta^{|S|},
+\]
+valid for every set $S$, where $\beta$ is the freezing threshold. Taking $\beta=n^{-1/3+1/100}$ makes the expected number of these surviving pairs and triangles $o(pn)$, as shown in Section~\ref{sec:completion}. Deleting one vertex from each eliminates all remaining triangles at that expected cost.
+
+\subsection{Where the improvement comes from}
+Put $Q=\log\log n$. Lemma~\ref{lem:density} gives an independent set whose size is at least a constant depending on $r$ times the average degree from edges of size three. We may therefore assume that this average degree is $O_r(n^{2/3}Q^{1/3})$. Deleting at most a quarter of the vertices then gives the maximum-degree bounds in Proposition~\ref{prop:reduction}: $O_r(n^{2/3}Q^{1/3})$ for edges of size three and $O_r(n)$ for each larger edge size.
+
+We choose
+\[
+ p=n^{-1/3}T,
+ \qquad
+ T\asymp_r\frac{(\log n)^{1/8}}{Q^{1/3}}.
+\]
+There is an outcome of the random choice for which at least a constant multiple of $pn=n^{2/3}T$ vertices remain after the deletions. The maximum degrees from edges of sizes three and four are at most constant multiples of
+\[
+ Q^{1/3}T^2\qquad\text{and}\qquad T^3,
+\]
+respectively. Since $\log T\asymp Q$, Theorem~\ref{thm:LP} colors the remaining hypergraph with $O_r(T/Q^{1/3})$ colors. One color class therefore has size at least a constant multiple of
+\[
+ \frac{n^{2/3}T}{T/Q^{1/3}}
+ =n^{2/3}Q^{1/3}.
+\]
+Thus the improvement comes from the logarithms in the coloring theorem: after the deletions, the logarithms of the degree bounds have order $\log\log n$.
+
+We prove the random selection lemma next. Section~\ref{sec:reduction} gives the structural reduction. Section~\ref{sec:auxiliary} defines the auxiliary graph and the parameters, Section~\ref{sec:configurations} counts the triangles, and Section~\ref{sec:completion} completes the proof.
+
+\section{A random independent set in a triangle-free graph}\label{sec:sampling}
+
+Our sampling argument uses Johansson's entropy method~\cite{Johansson}, following~\cite[Section~2]{Dhawan}; see also~\cite[Section~4]{MS} for a related sampling procedure. The following lemma allows the freezing threshold to vary and also bounds the probability that a separated set is selected.
+
+\begin{lemma}\label{lem:sampling}
+Let $G$ be a triangle-free graph of maximum degree at most $A$. Suppose that $0<p<\beta\le1/2$ and $\log(\beta/p)>1$. There is a random independent set $I$ of $G$ such that, for every vertex $v$,
+\begin{equation}\label{eq:marginal}
+ p-\frac{2Ap^2}{\log(\beta/p)-1}
+ \le\Pp(v\in I)\le p.
+\end{equation}
+Moreover,
+\begin{align}
+ \Pp(S\subseteq I)&\le p^{|S|}
+ &&\text{if $S$ is separated in $G$},\label{eq:separated}\\
+ \Pp(S\subseteq I)&\le\beta^{|S|}
+ &&\text{for every }S\subseteq V(G).\label{eq:cap}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Fix an ordering of $V(G)$ and give every vertex initial weight $p$. An unprocessed vertex is \emph{active} if its weight is less than $\beta$. If its weight reaches or exceeds $\beta$, it is frozen: its weight is left unchanged for the rest of the procedure, and it is never selected.
+
+Process the vertices in the fixed order. At the turn of an active vertex $u$ of weight $a$, select $u$ with probability $a$, conditional on all preceding choices. If $u$ is selected, set the weights of its active neighbors to zero. Otherwise, divide their weights by $1-a$. Freeze every vertex whose updated weight is at least $\beta$, retaining its updated weight. Then mark $u$ as processed. At the turn of a frozen vertex, mark it as processed without selecting it or changing any weights.
+
+Let $I$ be the set of selected vertices. It is independent: any later active neighbor of a selected vertex receives weight zero and keeps that weight until its turn, while a frozen neighbor is never selected. A newly frozen weight is at most $\beta/(1-\beta)\le1$, so all weights are bounded.
+
+\smallskip
+\noindent\emph{Expected weights.}
+When an active vertex of weight $a$ is processed, the conditional expectation of the new weight of an active, unprocessed neighbor of weight $b$ is
+\begin{equation}\label{eq:weight-update}
+ a\cdot0+(1-a)\frac{b}{1-a}=b.
+\end{equation}
+Freezing leaves the new weight unchanged. It follows by repeated conditioning that, if $Z_v$ is the weight immediately before the turn of $v$, then $\E Z_v=p$. If $v$ froze earlier, $Z_v$ is its weight at the time of freezing. Let $F_v$ be the event that $v$ froze. Then
+\begin{equation}\label{eq:lost-weight}
+ \Pp(v\in I)
+ =\E[Z_v\ind_{F_v^c}]
+ =p-\E[Z_v\ind_{F_v}].
+\end{equation}
+Let $uv\in E(G)$, with $u$ earlier than $v$ in the order. No vertex preceding $u$ is adjacent to both $u$ and $v$, since $G$ is triangle-free. At every step before the turn of $u$, at most one of their weights changes, and its conditional expectation is unchanged by~\eqref{eq:weight-update}. Their product therefore also has unchanged conditional expectation. If $U$ and $V$ are their weights immediately before the turn of $u$, then $\E[UV]=p^2$. Let $F$ be the event that both vertices are active at that moment. By nonnegativity,
+\begin{equation}\label{eq:adjacent-product}
+ \E[UV\ind_F]\le\E[UV]=p^2.
+\end{equation}
+
+\smallskip
+\noindent\emph{The weight lost through freezing.}
+Define
+\[
+ \phi(t)=t\log(t/p)-t+p\quad(t>0),\qquad\phi(0)=p.
+\]
+This function is nonnegative: its derivative is $\log(t/p)$, so it has its minimum, equal to zero, at $t=p$. When an active vertex of weight $a$ is processed, the conditional expected increase of $\phi$ at an active, unprocessed neighbor of weight $b$ is
+\begin{align*}
+ a\phi(0)+(1-a)\phi\!\left(\frac{b}{1-a}\right)-\phi(b)
+ &=-b\log(1-a)\\
+ &\le2ab,
+\end{align*}
+where $a<\beta\le1/2$. The formula also holds for $b=0$.
+
+Only neighbors earlier than $v$ can change its weight before its turn. By~\eqref{eq:adjacent-product}, processing each such neighbor increases the expected value of $\phi$ at $v$ by at most $2p^2$; if either vertex is frozen, the increase is zero. Since $\phi(p)=0$, summing gives
+\begin{equation}\label{eq:phi-bound}
+ \E\phi(Z_v)\le2\deg_G(v)p^2\le2Ap^2.
+\end{equation}
+On $F_v$, we have $Z_v\ge\beta$ and hence
+\[
+ \phi(Z_v)\ge Z_v\bigl(\log(\beta/p)-1\bigr).
+\]
+Since $\phi$ is nonnegative,~\eqref{eq:phi-bound} gives
+\[
+ \E[Z_v\ind_{F_v}]
+ \le\frac{2Ap^2}{\log(\beta/p)-1}.
+\]
+Together with~\eqref{eq:lost-weight}, this proves~\eqref{eq:marginal}.
+
+\smallskip
+\noindent\emph{The probability of choosing a set.}
+Let $S$ be separated. Associate a random variable with each vertex of $S$. Before the vertex is processed, this variable is its current weight. At the turn of an active vertex of $S$, replace its variable by the indicator that it is selected; at the turn of a frozen vertex, keep its variable unchanged. After the vertex is processed, its variable remains unchanged.
+
+A vertex outside $S$ has at most one neighbor in $S$. A vertex in $S$ has no neighbor in $S$. Consequently, each step changes at most one of these variables, and the conditional expectation of that variable is unchanged. The expected product of the variables is thus $p^{|S|}$ throughout. At the end the product is nonnegative, and it equals $1$ whenever $S\subseteq I$. This proves~\eqref{eq:separated}.
+
+For an arbitrary $S$, list its vertices in processing order as $s_1,\ldots,s_k$. Conditional on the history before the turn of $s_i$, its probability of selection is at most $\beta$, and is zero if it has frozen. The event that $s_1,\ldots,s_{i-1}$ have all been selected is determined by that history. Repeated conditioning therefore gives
+\[
+ \Pp(s_1,\ldots,s_i\in I)
+ \le\beta\Pp(s_1,\ldots,s_{i-1}\in I),
+\]
+which proves~\eqref{eq:cap}.
+\end{proof}
+
+The bound~\eqref{eq:separated} need not hold when $S$ is merely independent in $G$. For example, take the graph on $\{x,y,z\}$ with edges $xz,yz$, process $z$ first, and suppose $p/(1-p)<\beta$. If $z$ is selected, neither $x$ nor $y$ can be selected. Otherwise, both have weight $p/(1-p)$, and their weights do not change again. Thus $\Pp(\{x,y\}\subseteq I)=(1-p)(p/(1-p))^2=p^2/(1-p)>p^2$, although $\{x,y\}$ is independent.
+
+\section{Reducing the degrees and codegrees}\label{sec:reduction}
+
+Throughout this section, every edge has size between $3$ and a fixed integer $r$. We use the reductions from~\cite[Section~3]{KMV}, beginning with their notion of an expandable set.
+
+\subsection{Expandable sets}
+A nonempty set $X\subseteq V(H)$ is \emph{expandable in $H$} if, for every set $Y\subseteq V(H)\setminus X$ with $|Y|\le2r$, there is an edge $e$ of $H$ such that $X\subseteq e$ and $e\cap Y=\varnothing$. Every edge is expandable, and every expandable set has size at most $r$.
+
+\begin{lemma}\label{lem:expand}
+If $H$ contains no loose triangle, then no three expandable sets in $H$ form a loose triangle.
+\end{lemma}
+\begin{proof}
+Suppose that expandable sets $X_1,X_2,X_3$ form a loose triangle. Choose an edge $e_1\supseteq X_1$ disjoint from $(X_2\cup X_3)\setminus X_1$. Next choose an edge $e_2\supseteq X_2$ disjoint from $(e_1\cup X_3)\setminus X_2$. Finally choose an edge $e_3\supseteq X_3$ disjoint from $(e_1\cup e_2)\setminus X_3$. Each forbidden set has size at most $2r$, so expandability permits all three choices. For distinct $i,j$, we have $e_i\cap e_j=X_i\cap X_j$. Thus $e_1,e_2,e_3$ form a loose triangle, a contradiction.
+\end{proof}
+
+\begin{lemma}\label{lem:compression}
+Let $H$ have $n$ vertices and no loose triangle. There is a hypergraph $J$ on $V(H)$ with the following properties:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $J$ has no loose triangle, is an antichain, and has edge sizes between $3$ and $r$;
+\item every independent set of $J$ is independent in $H$;
+\item for $3\le i<j\le r$, every $i$-set $X$ satisfies
+\begin{equation}\label{eq:bounded-codegrees}
+ \dd_j(X,J)\le(2r)^{j-i};
+\end{equation}
+\item for $4\le j\le r$, we have $m_j(J)=O_r(n^2)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+First remove every edge that properly contains another edge. This does not change the independent sets. Whenever the current hypergraph has an edge properly containing an expandable set $X$ with $|X|\ge3$, remove all edges containing $X$ and add $X$ itself as an edge.
+
+This operation preserves the antichain property. Indeed, any old edge properly contained in $X$ would already have been properly contained in an old edge containing $X$, contrary to the antichain property; all old edges containing $X$ are removed. It also preserves the absence of loose triangles. A new loose triangle would consist of $X$ and two unchanged edges. All three are expandable in the hypergraph before the operation, contradicting Lemma~\ref{lem:expand}. Finally, every removed edge contains the new edge $X$, so any independent set after the operation was independent before it.
+
+The sum of the sizes of the edges strictly decreases at every operation, so the process terminates. The resulting hypergraph $J$ satisfies~\textup{(i)} and~\textup{(ii)}. No expandable set $X$ with $|X|\ge3$ is properly contained in an edge of $J$.
+
+Fix $j$ and prove~\eqref{eq:bounded-codegrees} by downward induction on $i$, starting with $i=j$, where a $j$-set belongs to at most one $j$-edge. Suppose that $3\le i<j$ and that an $i$-set $X$ lies in more than $(2r)^{j-i}$ edges of size $j$. Since $X$ is a proper subset of an edge, it is not expandable. There is consequently a set $Y\subseteq V(J)\setminus X$, $|Y|\le2r$, meeting every edge containing $X$. Some $y\in Y$ satisfies
+\[
+ \dd_j(X\cup\{y\},J)>(2r)^{j-i-1},
+\]
+contradicting the induction hypothesis.
+
+The same argument shows that every nonexpandable pair $P$ satisfies
+\begin{equation}\label{eq:nonexpandable-pair}
+ \dd_j(P,J)\le(2r)^{j-2}\qquad(3\le j\le r).
+\end{equation}
+Indeed, take a set of at most $2r$ vertices outside $P$ meeting every edge containing $P$, and sum the bounds for the triples obtained by adding one of these vertices to $P$.
+
+Every edge of $J$ contains a nonexpandable pair. Otherwise, the three pairs on any three of its vertices would be expandable and would form a loose triangle, contrary to Lemma~\ref{lem:expand}. Assign each edge of size $j\ge4$ to one such pair. By~\eqref{eq:nonexpandable-pair}, each pair is assigned at most $(2r)^{j-2}$ edges. Hence
+\[
+ m_j(J)\le\binom n2(2r)^{j-2}=O_r(n^2).
+\]
+\end{proof}
+
+\subsection{Many edges of size three give a large independent set}
+The next lemma bounds the average degree arising from edges of size three in terms of $\alpha(H)$. The proof follows the argument in~\cite[Section~3.2]{KMV}.
+
+\begin{lemma}\label{lem:density}
+If $H$ has no loose triangle and $d_3=3m_3(H)/|V(H)|$, then
+\[
+ \alpha(H)\ge\frac{2d_3}{9(2r-1)}.
+\]
+\end{lemma}
+\begin{proof}
+Call a pair \emph{light} if it belongs to at most $r$ edges of size three, and \emph{heavy} otherwise. Every edge of size three has a light pair. To see this, suppose that all three pairs of $\{a,b,c\}$ were heavy. Extend $ab,bc,ca$ to edges of size three, choosing their additional vertices successively outside $\{a,b,c\}$ and distinct from those already chosen. At each choice, at most three vertices outside the pair are forbidden, whereas there are more than $r\ge3$ possible additional vertices. The three resulting edges form a loose triangle.
+
+Put $m=m_3(H)$ and $n=|V(H)|$. First suppose that at least $2m/3$ edges of size three have at least two light pairs. For each such edge choose a vertex at which two light pairs meet. Some vertex $v$ is chosen for at least
+\[
+ \frac{2m}{3n}=\frac{2d_3}{9}
+\]
+edges. Form a graph on $V(H)\setminus\{v\}$ with an edge $xy$ for each of these edges $\{v,x,y\}$. Its maximum degree is at most $r$, since both $vx$ and $vy$ are light. A greedy choice gives a matching, that is, a collection of disjoint edges, of size at least $2d_3/[9(2r-1)]$: choosing one edge removes at most $2r-1$ edges from further consideration.
+
+Choose one endpoint from each edge of the matching, and call the resulting set $X$. If an edge $F$ of $H$ were contained in $X$, take two distinct vertices $x,x'\in F$ and the two matching edges from which they were chosen. The unchosen endpoint of each matching edge lies outside $X$, and $v\notin X$. The corresponding edges of size three therefore meet only at $v$, and meet $F$ exactly at $x$ and $x'$. They and $F$ would form a loose triangle. Hence $X$ is independent.
+
+Otherwise, more than $m/3$ edges of size three have exactly one light pair. Count both endpoints of that pair for each such edge. Some vertex $v$ belongs to the light pair in at least $2m/(3n)=2d_3/9$ of these edges. Each light pair containing $v$ appears in at most $r$ of them. We may therefore choose at least $2d_3/(9r)$ distinct vertices $x_i$ and edges $\{v,x_i,y_i\}$ whose unique light pair is $vx_i$.
+
+No $y_i$ equals any $x_j$: the pair $vy_i$ is heavy, whereas $vx_j$ is light. Let $X=\{x_i\}$. If an edge $F$ of $H$ is contained in $X$, the values $y_i$ for $x_i\in F$ must all be equal. Otherwise two corresponding edges containing $v$, together with $F$, form a loose triangle. Write their common value as $y$ and choose distinct $x_i,x_j\in F$. The pair $yx_j$ is heavy, so there is an edge $\{y,x_j,z\}$ of size three with
+\[
+ z\notin(F\setminus\{x_j\})\cup\{v\},
+\]
+since the forbidden set has size at most $r$. The edges $\{v,x_i,y\}$, $\{y,x_j,z\}$ and $F$ form a loose triangle. This contradiction shows that $X$ is independent. Its size is at least $2d_3/(9r)\ge2d_3/[9(2r-1)]$.
+\end{proof}
+
+\begin{proposition}\label{prop:reduction}
+To prove Theorem~\ref{thm:main}, it suffices to prove it for antichains $J$ with no loose triangle satisfying
+\begin{align}
+ \Delta_3(J)&\le B n^{2/3}(\log\log n)^{1/3},\label{eq:degree3}\\
+ \Delta_j(J)&\le Bn\qquad(4\le j\le r),\label{eq:degreehigher}\\
+ \dd_4(X,J)&\le B\qquad\text{for every triple }X,\label{eq:degree34}
+\end{align}
+where $n=|V(J)|$ and $B\ge1$ is a constant depending only on $r$.
+\end{proposition}
+\begin{proof}
+Let the original number of vertices be $N$. If $\alpha(H)\ge N^{2/3}(\log\log N)^{1/3}$, there is nothing to prove. Otherwise apply Lemma~\ref{lem:compression}. Its conclusion gives $\alpha(J)\le\alpha(H)$. Lemma~\ref{lem:density} then bounds $d_3(J)$ by $O_r(N^{2/3}(\log\log N)^{1/3})$, and Lemma~\ref{lem:compression} gives $d_j(J)=O_r(N)$ for $j\ge4$.
+
+For each $j$ with $d_j(J)>0$, remove all vertices of $j$-degree greater than $4(r-2)d_j(J)$. There are fewer than $N/[4(r-2)]$ such vertices for each $j$, since the sum of the $j$-degrees is $Nd_j(J)$. At least $3N/4$ vertices remain after all these removals. In the induced hypergraph on the remaining vertices, the maximum degrees satisfy~\eqref{eq:degree3} and~\eqref{eq:degreehigher}, after increasing a constant $B=B(r)$ and writing $n$ for the new number of vertices. The bound~\eqref{eq:degree34} follows from~\eqref{eq:bounded-codegrees} and is preserved under vertex deletion. An independent set in the final induced hypergraph is independent in the compressed hypergraph and hence in $H$. Since $n\ge3N/4$, the resulting lower bound loses only a constant factor.
+\end{proof}
+
+\section{The auxiliary graph}\label{sec:auxiliary}
+
+Fix a hypergraph $J$ as in Proposition~\ref{prop:reduction}. All assertions below are for sufficiently large $n$, with $r$ and $B$ fixed. Set
+\[
+ \ell=\log n,\qquad Q=\log\log n,\qquad
+ a=\frac78,\qquad\varepsilon=\frac1{100},
+\]
+and define
+\begin{equation}\label{eq:thresholds}
+ L_3=n^{1/3}\ell^{-a},\qquad L_4=n^{2/3}\ell^{-a}.
+\end{equation}
+Let $G$ be the graph on $V(J)$ in which a pair $P$ is an edge if
+\[
+ \dd_3(P,J)>L_3\quad\text{or}\quad\dd_4(P,J)>L_4.
+\]
+Let $J_0$ be the hypergraph on $V(J)$ whose edges are the edges of $J$ containing no edge of $G$. Set
+\begin{equation}\label{eq:A}
+ A=5B n^{1/3}\ell^aQ^{1/3}.
+\end{equation}
+
+\begin{lemma}\label{lem:auxiliary}
+The graph $G$ is triangle-free, has maximum degree at most $A$, and every edge of $J_0$ is separated in $G$.
+\end{lemma}
+\begin{proof}
+Every edge $P$ of $G$ is expandable in $J$. To see this, let $Y\subseteq V(J)\setminus P$ with $|Y|\le2r$. If $\dd_3(P,J)>L_3$, then $Y$ meets at most $2r$ edges of size three containing $P$, whereas $L_3>2r$. If $\dd_4(P,J)>L_4$, then each vertex of $Y$ belongs to at most $B$ edges of size four containing $P$, by~\eqref{eq:degree34}. Hence $Y$ meets at most $2rB$ such edges, whereas $L_4>2rB$. In either case, some edge containing $P$ is disjoint from $Y$. Lemma~\ref{lem:expand} now shows that $G$ is triangle-free.
+
+For every vertex $v$, summing pair codegrees over pairs containing $v$ gives $2\dd_3(v,J)$ for edges of size three and $3\dd_4(v,J)$ for edges of size four. Hence
+\[
+ \deg_G(v)\le\frac{2\Delta_3(J)}{L_3}+\frac{3\Delta_4(J)}{L_4}
+ \le5Bn^{1/3}\ell^aQ^{1/3}=A.
+\]
+
+Let $e\in E(J_0)$. Its vertices are nonadjacent in $G$ by definition. Suppose that $x,y\in e$ have a common neighbor $z$ in $G$. Then $z\notin e$, since otherwise $e$ contains an edge of $G$. The three sets $\{x,z\}$, $\{y,z\}$ and $e$ are expandable and form a loose triangle. This contradicts Lemma~\ref{lem:expand} and proves separation.
+\end{proof}
+
+Choose
+\begin{equation}\label{eq:p-beta-T}
+ p=\frac{\varepsilon\ell}{64A},\qquad
+ \beta=n^{-1/3+\varepsilon},\qquad
+ T=pn^{1/3}=\frac{\varepsilon}{320B}\frac{\ell^{1/8}}{Q^{1/3}}.
+\end{equation}
+We have $T\to\infty$ and
+\begin{equation}\label{eq:logs}
+ \log T=\frac18Q-\frac13\log Q+O_B(1)\sim\frac18Q.
+\end{equation}
+Also
+\[
+ \log(\beta/p)=\varepsilon\ell-\log T\sim\varepsilon\ell,
+ \qquad 2Ap=\frac{\varepsilon\ell}{32}.
+\]
+Thus $0<p<\beta\le1/2$, $\log(\beta/p)>1$, and
+\[
+ \frac{2Ap}{\log(\beta/p)-1}\longrightarrow\frac1{32}<\frac12.
+\]
+Lemma~\ref{lem:sampling} therefore gives a random independent set $I$ of $G$ with $\Pp(v\in I)\ge p/2$ for every vertex $v$. In particular,
+\begin{equation}\label{eq:sample-size}
+ \E|I|\ge\frac{pn}{2}.
+\end{equation}
+The set $I$ also satisfies~\eqref{eq:separated} and~\eqref{eq:cap}. Every edge of $J[I]$ belongs to $J_0$, since $I$ contains no edge of $G$. In particular, every edge of $J$ with positive probability of being contained in $I$ is separated.
+
+\section{Counting the triangles}\label{sec:configurations}
+
+Let $K_0$ be the hypergraph on $V(J)$ whose edges are the edges of $J_0$ of size three or four. Let $\mathcal P$ be the collection of unordered pairs $\{e,f\}$ of distinct edges of $K_0$ such that $|e\cap f|=2$ and $e\cup f$ is separated in $G$. For every $\{e,f\}\in\mathcal P$ with $e\cup f\subseteq I$, we will delete one vertex of $e\cup f$.
+
+By Lemma~\ref{lem:auxiliary}, if every pair of vertices in a set $U$ is contained in an edge of $J_0$, then $U$ is separated in $G$. Indeed, each pair is nonadjacent and has no common neighbor in $G$, because it lies in a separated edge. The edge containing a pair need not be contained in $U$.
+
+\begin{lemma}\label{lem:classification}
+Suppose that a triangle in $K_0$ contains neither a pair in $\mathcal P$ nor two edges of size four intersecting in three vertices. Up to permuting the three edges, it has one of the following forms:
+\nopagebreak[4]
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The triple intersection is empty, the pairwise intersection sizes are $2,1,1$, and at least one of the two edges meeting in two vertices has size four.
+\item All three edges have size four, the triple intersection is empty, and the pairwise intersection sizes are $2,2,1$.
+\item The triple intersection has size one, all pairwise intersection sizes are two, and the edge sizes are $3,4,4$ or $4,4,4$.
+\end{enumerate}
+Each triangle of one of these forms has between six and eight vertices in its union. For each $v\in\{6,7,8\}$, the number of such triangles whose union has size $v$ is at most
+\begin{equation}\label{eq:triangle-count}
+ C_B Q^{2/3} n^{(v+1)/3},
+\end{equation}
+where $C_B$ depends only on $B$.
+\end{lemma}
+
+\begin{proof}
+We first prove that the list is exhaustive. Let the three edges be $e,f,g$ and put $t=|e\cap f\cap g|$. All three sets $(e\cap f)\setminus g$, $(f\cap g)\setminus e$ and $(g\cap e)\setminus f$ are nonempty, by the definition of a triangle. Every pairwise intersection has size at most two. An intersection of size three would either be a size-three edge contained in a size-four edge, contrary to the antichain property, or be the excluded intersection of two size-four edges.
+
+Suppose first that $t=0$. The possible pairwise intersection sizes are $1$ and $2$. We list these three sizes without regard to their order. The pattern $(1,1,1)$ is a loose triangle, which is absent.
+
+For the pattern $(2,1,1)$, suppose that the two edges meeting in two vertices both have size three. Write them as $\{a,b,c\}$ and $\{a,b,d\}$. The third edge contains $c$ and $d$, because the triple intersection is empty. Every pair in $\{a,b,c,d\}$ therefore lies together in one of the three edges, so $\{a,b,c,d\}$ is separated. The first two edges form a pair in $\mathcal P$, a contradiction. Thus at least one has size four, giving~\textup{(i)}.
+
+For the pattern $(2,2,1)$, the edge meeting each of the other two edges in two vertices has size four. Write it as $A_1\cup A_2$, where $A_1,A_2$ are disjoint pairs. The other edges contain $A_1\cup\{c\}$ and $A_2\cup\{c\}$ for a vertex $c$ outside $A_1\cup A_2$. If the edge containing $A_1\cup\{c\}$ has size three, its union with $A_1\cup A_2$ is $A_1\cup A_2\cup\{c\}$. Every pair of vertices in this union lies in one of the three edges, so these two edges form a pair in $\mathcal P$. The same argument applies to the edge containing $A_2\cup\{c\}$. Both must therefore have size four, giving~\textup{(ii)}.
+
+For the pattern $(2,2,2)$, all three edges have size four and are of the form $A_1\cup A_2$, $A_1\cup A_3$, $A_2\cup A_3$, with $A_1,A_2,A_3$ disjoint pairs. The union of any two is $A_1\cup A_2\cup A_3$. Every pair of vertices in this union lies in one of the three edges, so there is again a pair in $\mathcal P$.
+
+Next suppose that $t=1$. Each pairwise intersection has size at least two, and therefore exactly two. Write $e\cap f\cap g=\{z\}$, $(e\cap f)\setminus g=\{a\}$, $(e\cap g)\setminus f=\{b\}$, and $(f\cap g)\setminus e=\{c\}$. If at least two edges have size three, label them as $e=\{z,a,b\}$ and $f=\{z,a,c\}$. Their union is $\{z,a,b,c\}$; every pair in this union lies in $e$ or $f$, except $bc$, which lies in $g$. Hence $\{e,f\}\in\mathcal P$. The remaining edge sizes are $3,4,4$ and $4,4,4$, giving~\textup{(iii)}. Finally, $t\ge2$ is impossible: each pairwise intersection contains the common intersection and a vertex outside the third edge, so it would have size at least three. This completes the classification.
+
+We now count each type. By~\eqref{eq:degree3} and~\eqref{eq:degreehigher},
+\begin{equation}\label{eq:edgecounts-reduced}
+ m_3(K_0)=O_B(n^{5/3}Q^{1/3}),
+ \qquad m_4(K_0)=O_B(n^2).
+\end{equation}
+Every pair has codegree at most $L_3$ from size-three edges of $K_0$ and at most $L_4$ from size-four edges, since these edges contain no edge of $G$. Every triple belongs to at most $B$ size-four edges.
+
+For~\textup{(i)}, label an edge of size four among the two edges meeting in two vertices as $e$. Label the other two edges as $f,g$ so that $|e\cap f|=2$ and $|e\cap g|=1$, and put $i=|f|$, $j=|g|$. We first count choices for $f,g$. They meet in one vertex, so they can be chosen in at most
+\[
+ \sum_{x\in V(J)}\dd_i(x,K_0)\dd_j(x,K_0)
+ \le n\Delta_i(J)\Delta_j(J)
+\]
+ordered ways. Once $f$ and $g$ have been chosen, there are at most $\binom42\cdot4=24$ choices for the two vertices of $e\cap f$ and the vertex of $e\cap g$. These are three distinct vertices, because the triple intersection is empty. By~\eqref{eq:degree34}, at most $B$ edges of size four contain them. Thus the number of triangles of type~\textup{(i)} with $|f|=i$ and $|g|=j$ is at most
+\[
+ 24B n\Delta_i(J)\Delta_j(J)
+ \le C_B Q^{2/3}n^{(i+j+1)/3}.
+\]
+The union has size $v=4+i+j-(2+1+1)=i+j$, which is between six and eight. Summing over the possible values of $i,j\in\{3,4\}$ gives~\eqref{eq:triangle-count}, after increasing $C_B$.
+
+For~\textup{(ii)}, write
+\[
+ e=A_1\cup A_2,\qquad
+ f=A_1\cup\{c,u\},\qquad
+ g=A_2\cup\{c,w\},
+\]
+where $A_1,A_2$ are disjoint pairs and $c,u,w$ are distinct vertices outside $A_1\cup A_2$. There are $O_B(n^2)$ choices for $e$, and six choices for the pair $A_1\subseteq e$, which also determine $A_2=e\setminus A_1$. The edge $f$ can then be chosen in at most $L_4$ ways. There are two choices for $c\in f\setminus e$. Finally, $g$ contains the prescribed triple $A_2\cup\{c\}$, so there are at most $B$ choices for $g$. This gives
+\[
+ O_B(n^2L_4)=O_B(n^{8/3})
+\]
+triangles. Each has seven vertices in its union, as required.
+
+For~\textup{(iii)}, write
+\[
+ e=\{z,a,b\}\cup U,\qquad
+ f=\{z,a,c,u\},\qquad
+ g=\{z,b,c,w\},
+\]
+where $U$ is empty in the $3,4,4$ case and is a singleton in the $4,4,4$ case. The vertices $z,a,b,c,u,w$ are distinct, and $U$ is disjoint from them. Choose $e$, taking the size-three edge in the first case, and choose the ordered vertices $z,a,b\in e$ in at most $24$ ways. The set $U$ is then determined. There are at most $L_4$ choices for $f$ containing $za$, at most two choices for $c\in f\setminus e$, and at most $B$ choices for $g$ containing $zbc$. By~\eqref{eq:edgecounts-reduced}, the counts in the two cases are respectively
+\[
+ O_B(n^{5/3}Q^{1/3}L_4)=O_B(n^{7/3}Q^{1/3}),
+ \qquad O_B(n^2L_4)=O_B(n^{8/3}).
+\]
+Their unions have sizes six and seven. This proves~\eqref{eq:triangle-count} in all cases.
+\end{proof}
+
+\section{Proof of Theorem~\ref{thm:main}}\label{sec:completion}
+
+By Proposition~\ref{prop:reduction}, it suffices to work with $J$ satisfying~\eqref{eq:degree3}--\eqref{eq:degree34}. Use the parameters, auxiliary graph $G$ and random set $I$ from Section~\ref{sec:auxiliary}. We delete vertices from $I$ to obtain an induced hypergraph with no triangle and with bounded maximum degrees. All survival events and vertex degrees below are evaluated in the original set $I$, before any deletions. Fix an ordering of $V(J)$. For each surviving edge or collection of edges specified below, mark the first vertex of its union in this ordering. We also mark vertices exceeding the degree bounds defined below. After all marks have been assigned, delete every marked vertex.
+
+\subsection{Pairs of edges with separated unions}
+For a pair of vertices $P$, write $b_j(P)=\dd_j(P,K_0)$ for $j=3,4$. Sums indexed by $P$ below range over all pairs of vertices of $J$. We have $b_j(P)\le L_j$ and
+\[
+ \sum_P b_3(P)=3m_3(K_0),\qquad
+ \sum_P b_4(P)=6m_4(K_0).
+\]
+The number of pairs of size-three edges meeting in two vertices is at most
+\[
+ \sum_P\binom{b_3(P)}2
+ \le\frac{L_3}{2}\sum_Pb_3(P)
+ =O_B(n^2Q^{1/3}\ell^{-a}).
+\]
+The number of pairs consisting of an edge of size three and an edge of size four meeting in two vertices is at most
+\[
+ \sum_Pb_3(P)b_4(P)
+ \le L_4\sum_Pb_3(P)
+ =O_B(n^{7/3}Q^{1/3}\ell^{-a}),
+\]
+and the number of pairs of size-four edges meeting in two vertices is at most
+\[
+ \sum_P\binom{b_4(P)}2
+ =O_B(n^{8/3}\ell^{-a}).
+\]
+These estimates also bound the numbers of pairs in $\mathcal P$ of the three respective types. For pairs in $\mathcal P$, the unions have sizes four, five and six, respectively, and are separated. By~\eqref{eq:separated}, the expected total number of surviving pairs in $\mathcal P$, divided by $pn$, is at most
+\begin{equation}\label{eq:separated-loss}
+ O_B\!\left(
+ \frac{Q^{1/3}T^3+Q^{1/3}T^4+T^5}{\ell^{7/8}}
+ \right)=o(1).
+\end{equation}
+Indeed, substituting $T=\varepsilon\ell^{1/8}/(320BQ^{1/3})$ makes the three terms constant multiples of
+\[
+ \ell^{-1/2}Q^{-2/3},\qquad
+ \ell^{-3/8}Q^{-1},\qquad
+ \ell^{-1/4}Q^{-5/3},
+\]
+all of which tend to zero. For each surviving pair $\{e,f\}\in\mathcal P$, mark one vertex of $e\cup f$ for deletion.
+
+\subsection{Larger intersections and the remaining triangles}
+There are $O_B(n^2)$ pairs of size-four edges intersecting in three vertices. To see this, first choose one of the $O_B(n^2)$ size-four edges, then one of its four triples, and then one of at most $B$ other edges containing that triple. Each union has five vertices. By~\eqref{eq:cap}, the expected number of such pairs in $I$ is at most
+\begin{equation}\label{eq:overlap3-loss}
+ O_B(n^2\beta^5)=O_B(n^{1/3+5\varepsilon})=o(pn).
+\end{equation}
+For each surviving pair of size-four edges meeting in three vertices, mark one vertex of their union for deletion.
+
+For the triangles in Lemma~\ref{lem:classification}, use the bound~\eqref{eq:cap} on each union. The expected number surviving is at most
+\begin{align}
+ C_BQ^{2/3}\sum_{v=6}^8n^{(v+1)/3}\beta^v
+ &=C_BQ^{2/3}\sum_{v=6}^8n^{1/3+v\varepsilon}\notag\\
+ &\le3C_BQ^{2/3}n^{1/3+8\varepsilon}
+ =o(pn).\label{eq:other-triangle-loss}
+\end{align}
+The last equality follows from $pn=n^{2/3}T$ and $8\varepsilon<1/3$. We count all triangles of the listed forms, whether or not they also contain a pair in $\mathcal P$. Mark one vertex from the union of each surviving triangle. By Lemma~\ref{lem:classification}, deleting all vertices marked so far eliminates every triangle formed by edges of sizes three and four.
+
+\subsection{Edges of size at least five}
+For $5\le j\le r$, we have $m_j(J)\le n\Delta_j(J)/j=O_B(n^2)$. Every edge of size $j$ with positive probability of survival belongs to $J_0$, so it is separated and survives with probability at most $p^j$. Since $p<1$ and $r$ is fixed, the expected total number of surviving edges of size at least five is
+\begin{equation}\label{eq:large-edge-loss}
+ O_{r,B}(n^2p^5)=o(pn),
+\end{equation}
+because $n^2p^5/(pn)=np^4=n^{-1/3}T^4\to0$. Mark one vertex of each such edge for deletion.
+
+\subsection{Vertices of large degree in the induced hypergraph}
+Finally, put
+\begin{equation}\label{eq:final-degrees}
+ D_3=64BQ^{1/3}T^2,
+ \qquad D_4=64BT^3.
+\end{equation}
+For $j=3,4$, mark every vertex of $I$ whose degree from edges of size $j$ in $J[I]$ exceeds $D_j$. Let $N_j$ be the number of these vertices. Each $e\in E_j(J_0)$ satisfies $\Pp(e\subseteq I)\le p^j$, and each $e\in E_j(J)\setminus E_j(J_0)$ satisfies $\Pp(e\subseteq I)=0$. Therefore
+\[
+ \E N_j
+ \le\frac1{D_j}\E\sum_{v\in I}\dd_j(v,J[I])
+ =\frac{j}{D_j}\sum_{e\in E_j(J)}\Pp(e\subseteq I)
+ \le\frac{n\Delta_j(J)p^j}{D_j}.
+\]
+By~\eqref{eq:degree3},~\eqref{eq:degreehigher} and~\eqref{eq:final-degrees},
+\begin{equation}\label{eq:degree-loss}
+ \E N_3\le\frac{pn}{64},\qquad
+ \E N_4\le\frac{pn}{64}.
+\end{equation}
+Deleting vertices only decreases the degrees of those that remain.
+
+\subsection{Applying the coloring theorem}
+Let $S$ be the subset of $I$ remaining after all marked vertices are deleted. The number of deleted vertices is at most the total number of surviving pairs, triangles and edges for which we marked a vertex, plus $N_3+N_4$. From~\eqref{eq:sample-size},~\eqref{eq:separated-loss},~\eqref{eq:overlap3-loss},~\eqref{eq:other-triangle-loss},~\eqref{eq:large-edge-loss} and~\eqref{eq:degree-loss},
+\[
+ \E|S|\ge\frac{pn}{2}-o(pn)-\frac{2pn}{64}\ge\frac{pn}{4}
+\]
+for all sufficiently large $n$. Thus there is a choice for which
+\begin{equation}\label{eq:retained-size}
+ |S|\ge\frac{pn}{4}=\frac{n^{2/3}T}{4}.
+\end{equation}
+The induced hypergraph $J[S]$ is triangle-free, every edge has size three or four, and $\Delta_j(J[S])\le D_j$ for $j=3,4$.
+
+Both $D_3$ and $D_4$ tend to infinity, so they are at least $8$ for all sufficiently large $n$. By~\eqref{eq:logs}, their logarithms satisfy
+\[
+ \log D_3=\frac14Q-\frac13\log Q+O_B(1),
+ \qquad
+ \log D_4=\frac38Q-\log Q+O_B(1).
+\]
+In particular, both are bounded below by a positive constant times $Q$. Theorem~\ref{thm:LP} gives
+\begin{align*}
+ \chi(J[S])
+ &\le C\max\left\{
+ \left(\frac{64BQ^{1/3}T^2}{\log D_3}\right)^{1/2},
+ \left(\frac{64BT^3}{\log D_4}\right)^{1/3}
+ \right\}\\
+ &\le C_B TQ^{-1/3}.
+\end{align*}
+Some color class consequently has size at least
+\[
+ \frac{|S|}{\chi(J[S])}\ge c_B n^{2/3}Q^{1/3}.
+\]
+It is independent in $J$, because $J[S]$ is induced. Proposition~\ref{prop:reduction} transfers this independent set to the original hypergraph, with only a change in the constant depending on $r$. This proves Theorem~\ref{thm:main}.
+\qed
+
+\begin{thebibliography}{99}
+
+\bibitem{AKS}
+M. Ajtai, J. Koml\'os and E. Szemer\'edi,
+\emph{A note on Ramsey numbers},
+J. Combin. Theory Ser. A \textbf{29} (1980), no.~3, 354--360.
+\href{https://doi.org/10.1016/0097-3165(80)90030-8}{doi:10.1016/0097-3165(80)90030-8}.
+
+\bibitem{CM}
+J. Cooper and D. Mubayi,
+\emph{List coloring triangle-free hypergraphs},
+Random Structures Algorithms \textbf{47} (2015), no.~3, 487--519.
+\href{https://doi.org/10.1002/rsa.20552}{doi:10.1002/rsa.20552}.
+
+\bibitem{Dhawan}
+A. Dhawan,
+\emph{Fractional coloring via entropy},
+arXiv:2603.17730v4, 2026.
+\url{https://arxiv.org/abs/2603.17730v4}.
+
+\bibitem{Johansson}
+A. Johansson,
+\emph{Asymptotic choice number for triangle free graphs},
+unpublished manuscript, 1996.
+
+\bibitem{Kim}
+J. H. Kim,
+\emph{The Ramsey number $R(3,t)$ has order of magnitude $t^2/\log t$},
+Random Structures Algorithms \textbf{7} (1995), no.~3, 173--207.
+\href{https://doi.org/10.1002/rsa.3240070302}{doi:10.1002/rsa.3240070302}.
+
+\bibitem{KMV}
+A. Kostochka, D. Mubayi and J. Verstra\"ete,
+\emph{Hypergraph Ramsey numbers: triangles versus cliques},
+J. Combin. Theory Ser. A \textbf{120} (2013), no.~7, 1491--1507.
+\href{https://doi.org/10.1016/j.jcta.2013.04.009}{doi:10.1016/j.jcta.2013.04.009}.
+
+\bibitem{LP}
+L. Li and L. Postle,
+\emph{The chromatic number of triangle-free hypergraphs},
+arXiv:2202.02839v3, 2025.
+\url{https://arxiv.org/abs/2202.02839v3}.
+
+\bibitem{MS}
+A. Martinsson and R. Steiner,
+\emph{Random independent sets in triangle-free graphs},
+Forum Math. Sigma \textbf{13} (2025), e156.
+\href{https://doi.org/10.1017/fms.2025.10112}{doi:10.1017/fms.2025.10112}.
+
+\bibitem{VW}
+J. Verstra\"ete and C. Wilson,
+\emph{Independent sets in hypergraphs},
+Random Structures Algorithms \textbf{68} (2026), no.~1, e70047.
+\href{https://doi.org/10.1002/rsa.70047}{doi:10.1002/rsa.70047}.
+
+\end{thebibliography}
+\end{document}
