@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-26T16:10:16.266754+00:00",
+  "checked_at_utc": "2026-10-26T16:37:49.174355+00:00",
   "scope": "Local execution of the pinned official metadata validator; not full Palomar preflight",
   "validator": "PalomarSubmission scripts.submission_contract.load_formalization_metadata",
   "pipeline_commit": "c02bbeaed888df45c4e28c4e99dba540ad21552a",
@@ -11,7 +11,7 @@
     "taxonomies/arxiv-categories.json": "3b339cf140a914c50bab39b1c44df2437ce3984bd09bb2150fcb0edd60eda776",
     "taxonomies/msc2020-codes.json": "b4de69f1f562da01e0f4580cecc0ab36098f5297bb7cdd669c8ec3b0d3606060"
   },
-  "metadata_sha256": "d70a29bfc68ad833d0a98537b430a57c22fd0993ef56ede2eea1b19f89540fa0",
+  "metadata_sha256": "517db4c43e19afc6fc01138943808e6c3a286d7e2ecc70d2d9887d1b6ff6fafd",
   "valid": true,
   "errors": [],
   "publication_blockers": [],
