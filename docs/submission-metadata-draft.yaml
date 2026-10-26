@@ -3,13 +3,13 @@ version: v0.4
 project:
   name: Independent sets in hypergraphs with no loose triangle
   description: >-
-    Conditional Lean formalisation of the mixed-rank independent-set theorem of
-    Ayush Basu, Abhishek Dhawan and Abhishek Methuku. Assuming the explicitly stated
+    Conditional Lean formalisation of “Independent sets in hypergraphs with no loose
+    triangle” by Ayush Basu, Abhishek Dhawan and Abhishek Methuku. Assuming the explicitly stated
     normalized Li–Postle vertex-coloring bound for triangle-free hypergraphs with edges
     of sizes 3 and 4, for every fixed integer r >= 3 there are constants c > 0
     and N such that every n-vertex hypergraph with n >= N, edge sizes between 3
     and r, and no loose triangle has an independent set of size at least
-    c n^(2/3) (log log n)^(1/3). No linearity assumption is imposed.
+    c n^(2/3) (log log n)^(1/3).
     The implication is proved in Lean; the Li–Postle premise and the manuscript's
     Ramsey corollary are not proved in this development.
   authors:
