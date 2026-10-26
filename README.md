@@ -1,26 +1,90 @@
 # Independent sets in hypergraphs with no loose triangle
 
-Lean proof of the full mixed-rank conclusion of manuscript version 21,
-Theorem 1.3, **conditional on the explicitly stated normalized Li–Postle
-3/4-edge coloring theorem**:
+Lean formalisation of the independent-set theorem in manuscript version 21,
+Theorem 1.3, **assuming the ordinary vertex-coloring bound obtained by specializing
+Li–Postle's theorem to hypergraphs with edges of sizes 3 and 4**:
 
 ```lean
 theorem KMV.main_result (hLP : KMV.LiPostle34) : KMV.KMVStatement
 ```
 
-For every integer r ≥ 3 there are c > 0 and N, depending only on r and the
-assumed absolute coloring bound, such that every loose-triangle-free
-hypergraph on n ≥ N vertices, with edge sizes between 3 and r, has an
-independent set of size at least c n^(2/3) (log log n)^(1/3).
-The ambient `Fin n` includes isolated vertices.
+Under this assumption, for every fixed integer $r \ge 3$ there are constants
+$c_r>0$ and $N_r$ such that every hypergraph $H$ on $n\ge N_r$ vertices, with
+edge sizes between $3$ and $r$ and no loose triangle, satisfies
 
-`LiPostle34` is exactly the ordinary-coloring specialization stated in manuscript
-Theorem 2.1, with real degree bounds D3,D4 ≥ 8. It is a proposition argument,
+$$\alpha(H)\ge c_r n^{2/3}(\log\log n)^{1/3}.$$
+
+Here $\alpha(H)$ is the largest size of a vertex set containing no edge.
+The constants depend on $r$ and the assumed absolute coloring bound, not on
+$n$ or $H$. The edge sizes may differ.
+The ambient `Fin n` includes isolated vertices. Edges are distinct subsets of
+the vertex set. They may intersect in more than one vertex and may contain
+one another: neither linearity nor an antichain assumption is imposed.
+
+`LiPostle34` is exactly the ordinary vertex-coloring specialization stated in
+manuscript Theorem 2.1, with real degree bounds D3,D4 ≥ 8. The digits `34`
+refer to edge sizes 3 and 4; colors are assigned to vertices, not to edges.
+It is a proposition argument,
 not a custom axiom. Li–Postle itself is not proved in this development.
 There are no other unproved hypotheses in the main theorem.
 The Ramsey consequence is outside the submitted primary target.
 
+## Mathematical context and sources
+
+This is the conditional formalisation of Theorem 1.3 in the
+[working manuscript by Ayush Basu, Abhishek Dhawan and Abhishek Methuku](manuscript/KMV_proof.tex).
+The frozen manuscript is version 21; its hash is recorded in
+`manuscript/provenance.json`. It is not represented here as a published paper.
+
+Theorem 3.1 of Kostochka, Mubayi and Verstraete,
+[*Hypergraph Ramsey numbers: Triangles versus cliques*](https://doi.org/10.1016/j.jcta.2013.04.009)
+(2013; [author-hosted text](https://homepages.math.uic.edu/~mubayi/papers/tri-finalrevised.pdf)),
+gives the bound n^(2/3)/(8r^3) for the same mixed-rank, loose-triangle-free class.
+The present conclusion adds the unbounded factor (log log n)^(1/3), conditional
+on the stated coloring premise. The research context is independent sets,
+hypergraph coloring, and loose-triangle Ramsey bounds in extremal and
+probabilistic combinatorics.
+
+The manuscript derives from this independent-set bound
+
+$$R(C_3,K_t^{(r)})\le C_r\,\frac{t^{3/2}}{\sqrt{\log\log t}}=o(t^{3/2})$$
+
+for every fixed $r\ge3$ and sufficiently large $t$. Here $C_3$ is the
+$r$-uniform loose triangle. This is the manuscript's resolution of the
+**2013 Kostochka–Mubayi–Verstraëte conjecture** (Conjecture 1.1 in their paper).
+The Lean submission proves the independent-set bound conditional on the
+explicit Li–Postle premise. The asymptotic conversion to this Ramsey statement
+is supplied in the manuscript and is not yet formalised in this repository.
+
+The external premise comes from Lina Li and Luke Postle,
+[*The chromatic number of triangle-free hypergraphs*](https://arxiv.org/abs/2202.02839v3),
+Theorem 1.4 of version 3 (21 August 2025). The manuscript states the normalized
+ordinary vertex-coloring specialization as Theorem 2.1. `LiPostle34` assumes that
+precise specialization with degree upper bounds at least 8. Its derivation
+from the general list-coloring theorem is explained in the manuscript but is
+not itself formalised here. Li–Postle triangles use a different, stronger
+forbidden-configuration condition than loose triangles; both definitions are
+explicit in `Challenge.lean`, and the proof performs the required reduction.
+
+This repository contains the substantive Lean development built from the
+manuscript. It imports the pinned Mathlib dependencies and no separate prior
+project formalisation. The namespace `KMV` refers to the problem's literature
+context; the working manuscript and the formalisation retain the distinct
+authorship recorded in `formalization.yaml`.
+
 ## Verification status
+
+The [official full Palomar preflight](https://github.com/methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle/actions/runs/40351845371)
+passed for commit `8c1ffa95ef08c6788434011dbb0bc794884e8bb8` on 26 October 2026.
+Its mechanical report records `status: pass`, no errors or report warnings,
+and successful sandboxed compilation, statement comparison, axiom checks, and
+NanoDa, con-ron and Lean kernel checks. The downloaded report is preserved as
+`evidence/palomar-preflight-8c1ffa95.json`.
+The current revision changes documentation, metadata, and Lean comments;
+proof terms, definitions, dependencies, and Comparator configuration are unchanged. Before intake,
+use the full commit of the corresponding successful run in
+[GitHub Actions](https://github.com/methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle/actions/workflows/palomar-preflight.yml).
+Submission, editorial review, and registration remain separate pending steps.
 
 The complete conditional main theorem and all project proof modules pass a
 clean local Lean rebuild and axiom audit. The main theorem's machine-derived
@@ -34,8 +98,9 @@ environments; this alone is not a fresh dependency-closure replay.
 Exported-data comparison and kernel results, where available, are recorded in
 `evidence/export-validation.json`, including exact commands, export hashes and
 individual exit codes. This is separate from Palomar's complete official
-workflow. **Palomar preflight has not run; the project is not submitted or
-registered.** No human review or endorsement is claimed.
+workflow. Those earlier local reports and the bundled archive retain the status
+of their recorded checkpoints; the official preflight above supersedes their
+then-pending preflight status. No human review or endorsement is claimed.
 
 ## Statement and proof correspondence
 
@@ -88,7 +153,7 @@ and invokes the bundled NanoDa, con-ron and Lean kernels on the exports.
 It does not evaluate project configuration or execute a source build inside
 bubblewrap, and is not Palomar's complete preflight.
 This runtime refuses bubblewrap namespace creation; that restriction is not
-disabled. The pinned full GitHub Actions workflow is prepared separately.
+disabled. The official full workflow has since succeeded on GitHub's runner.
 
 ## Publication and rights
 
@@ -101,7 +166,8 @@ No human review of the generated proof source is claimed.
 
 The pinned Palomar metadata validator passes. The public source repository is
 [methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle](https://github.com/methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle).
-The official full preflight, editorial review and registration remain pending.
+The official full preflight result is linked above. Editorial review and
+registration remain pending.
 
 The [complete local verification archive](KMV_Lean_verified_conditional_proof.zip)
 contains the original Git history, historical checkpoints and certificate bindings.
