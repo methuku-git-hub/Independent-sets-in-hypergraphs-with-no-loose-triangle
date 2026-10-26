@@ -18,8 +18,7 @@ Here $\alpha(H)$ is the largest size of a vertex set containing no edge.
 The constants depend on $r$ and the assumed absolute coloring bound, not on
 $n$ or $H$. The edge sizes may differ.
 The ambient `Fin n` includes isolated vertices. Edges are distinct subsets of
-the vertex set. They may intersect in more than one vertex and may contain
-one another: neither linearity nor an antichain assumption is imposed.
+the vertex set.
 
 `LiPostle34` is exactly the ordinary vertex-coloring specialization stated in
 manuscript Theorem 2.1, with real degree bounds D3,D4 ≥ 8. The digits `34`
