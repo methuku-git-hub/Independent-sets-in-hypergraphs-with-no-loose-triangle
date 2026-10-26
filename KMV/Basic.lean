@@ -3,8 +3,9 @@ public import Mathlib.Data.Finset.Card
 public section
 namespace KMV
 
-/-- A simple hypergraph on the ambient finite vertex type. Isolated vertices
-remain in the ambient type and contribute to its cardinality. -/
+/-- A hypergraph is a finite set of finite vertex sets. No linearity or
+antichain condition is imposed. Isolated vertices remain in the ambient type
+and contribute to its cardinality. -/
 abbrev Hypergraph (V : Type*) := Finset (Finset V)
 
 /-- No edge is contained in the vertex set. -/

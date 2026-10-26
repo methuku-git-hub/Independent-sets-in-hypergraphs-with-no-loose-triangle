@@ -57,7 +57,7 @@ theorem four_three_union_mem {H : Hypergraph V} {e f : Finset V}
   exact configurationUnions_mem (C:=intersectingAt H 4 4 3) (U:=fun p => p.1 ∪ p.2) (c:=(e,f)) hp hsize
 
 /-- Deterministic cleaning: avoid the listed unions and retain graph
-independence. The full original induced hypergraph then has rank 3/4 and no
+independence. The full original induced hypergraph then has only edges of sizes 3 and 4 and no
 Li--Postle triangle, with every transfer from the original families explicit. -/
 theorem cleaned_triangleFree {H : Hypergraph V} {G : V → V → Prop} {r : ℕ}
     (hr : RankBounds H r) (ha : Antichain H) (hl : LooseTriangleFree H)

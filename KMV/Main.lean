@@ -5,8 +5,10 @@ namespace KMV
 open Filter Topology Finset
 open scoped Classical
 
-/-- The full mixed-rank manuscript conclusion, conditional only on the
-explicit normalized Li–Postle 3/4-edge ordinary-coloring statement. -/
+/-- Every sufficiently large n-vertex hypergraph with no loose triangle and
+edge sizes between 3 and fixed r has an independent set of size at least
+c n^(2/3) (log log n)^(1/3), conditional on the stated Li–Postle
+vertex-coloring bound for hypergraphs with edges of sizes 3 and 4. -/
 theorem main_result (hLP : LiPostle34) : KMVStatement := by
   obtain ⟨C,hC,hcolor⟩ := liPostle34_on_subset hLP
   intro r _hr
