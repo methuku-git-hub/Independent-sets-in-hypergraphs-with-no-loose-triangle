@@ -1,0 +1,6 @@
+.lake/
+__pycache__/
+*.pyc
+source.bundle
+evidence/commit-binding.json
+evidence/local-proof-certificate.json
