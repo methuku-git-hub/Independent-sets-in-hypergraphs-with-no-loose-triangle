@@ -9,7 +9,7 @@ theorem KMV.main_result (hLP : KMV.LiPostle34) : KMV.KMVStatement
 ```
 
 For every integer r ≥ 3 there are c > 0 and N, depending only on r and the
-assumed absolute coloring bound, such that every loose-triangle-free simple
+assumed absolute coloring bound, such that every loose-triangle-free
 hypergraph on n ≥ N vertices, with edge sizes between 3 and r, has an
 independent set of size at least c n^(2/3) (log log n)^(1/3).
 The ambient `Fin n` includes isolated vertices.
