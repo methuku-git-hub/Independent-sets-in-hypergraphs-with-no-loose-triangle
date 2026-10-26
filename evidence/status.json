@@ -14,13 +14,13 @@
     "lean_export_kernel_replay": "Lean accepted the full Solution export in a fresh kernel environment",
     "main_dependency_closure": "audited 3982 constants; only propext, Classical.choice and Quot.sound",
     "full_main_theorem": "proved and locally verified: KMV.main_result : LiPostle34 \u2192 KMVStatement",
-    "official_preflight": "Not run; complete source upload pending. Local proof verification is separate from the official GitHub workflow.",
+    "official_preflight": "Passed at 8c1ffa95ef08c6788434011dbb0bc794884e8bb8; see evidence/palomar-preflight-8c1ffa95.json. Documentation revisions require a matching full preflight before intake.",
     "registration": "not submitted",
     "publication_metadata": "Passed pinned official metadata validator; confirmed human author and maintainer; approved Apache-2.0 root LICENSE applied"
   },
   "scope": "Complete authorized conditional theorem LiPostle34 implies KMVStatement; LiPostle34 itself is not proved",
   "source_version": 21,
   "implemented": "Complete proof including finite sampling, compression, density, structural reduction, triangle classification and cover, cleaning, all eventual estimates, and main assembly",
-  "publication_readiness": "See evidence/publication-readiness.json; no official preflight, submission or registration has occurred",
+  "publication_readiness": "Source publication and initial full preflight complete. See evidence/publication-readiness.json for exact commit bindings and remaining submission steps.",
   "public_repository": "methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle"
 }

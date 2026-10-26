@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-10-26T14:58:57.138950+00:00",
+  "checked_at_utc": "2026-10-26T16:10:16.266754+00:00",
   "scope": "Local execution of the pinned official metadata validator; not full Palomar preflight",
   "validator": "PalomarSubmission scripts.submission_contract.load_formalization_metadata",
   "pipeline_commit": "c02bbeaed888df45c4e28c4e99dba540ad21552a",
@@ -11,7 +11,7 @@
     "taxonomies/arxiv-categories.json": "3b339cf140a914c50bab39b1c44df2437ce3984bd09bb2150fcb0edd60eda776",
     "taxonomies/msc2020-codes.json": "b4de69f1f562da01e0f4580cecc0ab36098f5297bb7cdd669c8ec3b0d3606060"
   },
-  "metadata_sha256": "9d7bbbe160492720cbbf293883a738daf38b92c37ea63b02b7b07b44a96e6a69",
+  "metadata_sha256": "d70a29bfc68ad833d0a98537b430a57c22fd0993ef56ede2eea1b19f89540fa0",
   "valid": true,
   "errors": [],
   "publication_blockers": [],
@@ -19,6 +19,6 @@
     "path": "LICENSE",
     "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
     "matches_approved_apache_2_0_text": true,
-    "official_license_detection": "not run; included in full Palomar preflight"
+    "official_license_detection": "Apache-2.0 detected by the full preflight at 8c1ffa95ef08c6788434011dbb0bc794884e8bb8; LICENSE unchanged"
   }
 }

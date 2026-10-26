@@ -1,14 +1,15 @@
 {
-  "checked_at_utc": "2026-10-26T14:58:57.138950+00:00",
+  "checked_at_utc": "2026-10-26T16:06:45.242028+00:00",
   "proof_verification_commit": "cf89ddcbabe790cbdedaa95f39170b707b2db751",
-  "scope": "Publication preparation only; no new Lean compilation or kernel replay in this resumed session",
+  "scope": "Submission-readiness review; full preflight evidence is bound to its recorded source commit; current changes are metadata, prose, and Lean comments",
   "build_input_files_compared": 62,
-  "build_input_hashes_match_verified_snapshot": true,
+  "build_input_hashes_match_verified_snapshot": false,
   "changes": [
-    "Applied confirmed human author and maintainer Abhishek Methuku",
-    "Applied approved Apache-2.0 software license as root LICENSE",
-    "Retained Codex generation disclosure and absence of claimed human proof review",
-    "Confirmed all 62 recorded build inputs are unchanged"
+    "Expanded the public abstract to identify the exact conditional mixed-rank bound",
+    "Added stable manuscript and research-literature references",
+    "Recorded the external premise in main_results.literature_dependencies",
+    "Updated preflight status with a commit-bound report",
+    "Corrected ambiguous coloring and hypergraph terminology in prose and Lean comments; executable Lean text, dependencies, and Comparator configuration unchanged"
   ],
   "metadata_status": "Passed pinned official metadata validator; all three missing fields resolved",
   "metadata_errors": [],
@@ -18,7 +19,13 @@
   "comparator_config": "comparator.json",
   "pipeline_commit": "c02bbeaed888df45c4e28c4e99dba540ad21552a",
   "workflow_mode": "full",
-  "official_preflight": "not run",
+  "official_preflight": {
+    "status": "pass",
+    "commit": "8c1ffa95ef08c6788434011dbb0bc794884e8bb8",
+    "workflow_url": "https://github.com/methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle/actions/runs/40351845371",
+    "report": "evidence/palomar-preflight-8c1ffa95.json",
+    "final_documentation_revision": "requires matching successful full preflight before intake"
+  },
   "palomar_verification": "not started",
   "palomar_registration": "not submitted",
   "policy_url": "https://github.com/PalomarRegistry/PalomarPolicy/blob/main/CONTRIBUTING.md",
@@ -26,8 +33,10 @@
   "agent_protocol_url": "https://submit.palomar-registry.org/llms.txt",
   "software_license": "Apache-2.0; approved and applied",
   "remaining_requirements": [
-    "Complete public source upload",
-    "Full official Palomar mechanical preflight at exact public commit",
-    "Palomar verification, editorial review and final registration"
-  ]
+    "Full official preflight at the final documentation revision",
+    "Personal Palomar authorization and intake",
+    "Palomar verification and editorial review",
+    "Consent to the exact review and final registration"
+  ],
+  "build_input_difference": "Only comments changed in Challenge.lean, KMV/Basic.lean, KMV/Cleaning.lean, and KMV/Main.lean; executable source text verified unchanged. A full preflight is required at the final revision."
 }
