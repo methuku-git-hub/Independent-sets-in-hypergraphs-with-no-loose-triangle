@@ -1,0 +1,10 @@
+{
+  "sources": [
+    "https://palomar-registry.org/how-to-submit",
+    "https://submit.palomar-registry.org/llms.txt",
+    "https://github.com/PalomarRegistry/PalomarPolicy/blob/28bd48b9b71bbb2a82c718ce761d5a4220ef8e60/CONTRIBUTING.md",
+    "https://github.com/PalomarRegistry/PalomarTemplate/tree/2891de4c48955af824969a263d31b25e7a9a1406",
+    "https://arxiv.org/html/2202.02839v3"
+  ],
+  "read_date": "2026-10-25"
+}
