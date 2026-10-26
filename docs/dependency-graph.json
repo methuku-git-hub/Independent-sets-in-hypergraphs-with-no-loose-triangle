@@ -1,0 +1,123 @@
+{
+  "kind": "informal dependency graph; NOT a machine-derived declaration closure",
+  "nodes": [
+    {
+      "id": "definitions",
+      "source": "Introduction/Notation",
+      "depends_on": [],
+      "status": "locally checked"
+    },
+    {
+      "id": "sampling",
+      "source": "Lemma 3.1",
+      "depends_on": [
+        "definitions"
+      ],
+      "status": "locally checked in full: KMV.sampling"
+    },
+    {
+      "id": "expand",
+      "source": "Lemma 4.1",
+      "depends_on": [
+        "definitions"
+      ],
+      "status": "locally checked: KMV.expandable_no_loose_triangle"
+    },
+    {
+      "id": "compression",
+      "source": "Lemma 4.2",
+      "depends_on": [
+        "expand"
+      ],
+      "status": "locally checked: KMV.compression"
+    },
+    {
+      "id": "density",
+      "source": "Lemma 4.3",
+      "depends_on": [
+        "definitions"
+      ],
+      "status": "locally checked with sufficient constant: KMV.density"
+    },
+    {
+      "id": "reduction",
+      "source": "Proposition 4.4",
+      "depends_on": [
+        "compression",
+        "density"
+      ],
+      "status": "locally checked: KMV.structural_reduction, with explicit r-dependent constant"
+    },
+    {
+      "id": "auxiliary",
+      "source": "Lemma 5.1",
+      "depends_on": [
+        "expand",
+        "reduction"
+      ],
+      "status": "finite properties and eventual parameter estimates proved"
+    },
+    {
+      "id": "classification",
+      "source": "Lemma 6.1",
+      "depends_on": [
+        "auxiliary"
+      ],
+      "status": "classification, orientations, combined union cover, monotonicity and transfer under cleaning locally checked"
+    },
+    {
+      "id": "deletion",
+      "source": "Section 7 loss and degree estimates",
+      "depends_on": [
+        "sampling",
+        "auxiliary",
+        "classification"
+      ],
+      "status": "complete finite assembly and eventual losses proved: sampling_cleaning, eventually_loss_envelope, parameter_cleaning"
+    },
+    {
+      "id": "li_postle",
+      "source": "Manuscript v21 Theorem 2.1, normalized 3/4-edge ordinary-coloring form of Li\u2013Postle v3 Theorem 1.4",
+      "depends_on": [],
+      "status": "explicit permitted hypothesis KMV.LiPostle34; not proved"
+    },
+    {
+      "id": "main",
+      "source": "Theorem 1.3",
+      "depends_on": [
+        "reduction",
+        "deletion",
+        "li_postle"
+      ],
+      "status": "proved: KMV.main_result; clean local build, actual axiom closure, exported statement comparison and three kernels passed; Palomar workflow pending"
+    },
+    {
+      "id": "ramsey",
+      "source": "Theorem 1.2",
+      "depends_on": [
+        "main"
+      ],
+      "status": "outside current primary target; unimplemented"
+    },
+    {
+      "id": "color_class",
+      "source": "Section 7 final coloring-to-independence step",
+      "depends_on": [
+        "definitions",
+        "li_postle"
+      ],
+      "status": "locally checked on surviving subsets: KMV.liPostle34_on_subset"
+    },
+    {
+      "id": "parameters",
+      "source": "Section 7 parameter substitution, sufficient alternative",
+      "depends_on": [
+        "reduction",
+        "sampling",
+        "deletion",
+        "color_class"
+      ],
+      "status": "proved: normalizedLoss_tendsto, eventually_sampling_parameters, coloring_denominator_bound"
+    }
+  ]
+}
