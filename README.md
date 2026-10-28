@@ -28,6 +28,10 @@ not a custom axiom. Li–Postle itself is not proved in this development.
 There are no other unproved hypotheses in the main theorem.
 The Ramsey consequence is outside the submitted primary target.
 
+[**Lean formalisation (Palomar)**](https://palomar-registry.org/entry?id=PALOMAR-2026-10-27-000016&version=1) — registered on 27 October 2026 as **PALOMAR-2026-10-27-000016, version 1**.
+The public record includes the checked statement, mechanical verification,
+automated review, and preserved source files.
+
 ## Mathematical context and sources
 
 This is the conditional formalisation of Theorem 1.3 in the
@@ -79,11 +83,14 @@ Its mechanical report records `status: pass`, no errors or report warnings,
 and successful sandboxed compilation, statement comparison, axiom checks, and
 NanoDa, con-ron and Lean kernel checks. The downloaded report is preserved as
 `evidence/palomar-preflight-8c1ffa95.json`.
-The current revision changes documentation, metadata, and Lean comments;
-proof terms, definitions, dependencies, and Comparator configuration are unchanged. Before intake,
-use the full commit of the corresponding successful run in
-[GitHub Actions](https://github.com/methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle/actions/workflows/palomar-preflight.yml).
-Submission, editorial review, and registration remain separate pending steps.
+The final submitted source commit, `ea281d7cf047227e8fde38bfc124db1117ed7c37`,
+was registered in [Palomar](https://palomar-registry.org/entry?id=PALOMAR-2026-10-27-000016&version=1) on 27 October 2026.
+Comparator accepted the Solution as a proof of the Challenge, and Lean, NanoDa,
+and con-ron checked the exported proof successfully. The automated review
+reported “No problems identified”. The registered theorem retains the explicit
+Li–Postle hypothesis; the Ramsey deduction is outside its formal scope.
+This README records the completed registration; the registered source remains
+the immutable commit linked in the Palomar record.
 
 The complete conditional main theorem and all project proof modules pass a
 clean local Lean rebuild and axiom audit. The main theorem's machine-derived
@@ -165,8 +172,8 @@ No human review of the generated proof source is claimed.
 
 The pinned Palomar metadata validator passes. The public source repository is
 [methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle](https://github.com/methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle).
-The official full preflight result is linked above. Editorial review and
-registration remain pending.
+Mechanical verification, automated review, and registration are complete for
+the pinned snapshot linked above.
 
 The [complete local verification archive](KMV_Lean_verified_conditional_proof.zip)
 contains the original Git history, historical checkpoints and certificate bindings.
