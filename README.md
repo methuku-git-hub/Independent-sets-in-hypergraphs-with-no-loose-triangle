@@ -34,46 +34,61 @@ automated review, and preserved source files.
 
 ## Mathematical context and sources
 
-This is the conditional formalisation of Theorem 1.3 in the
-[working manuscript by Ayush Basu, Abhishek Dhawan and Abhishek Methuku](manuscript/KMV_proof.tex).
-The frozen manuscript is version 21; its hash is recorded in
-`manuscript/provenance.json`. It is not represented here as a published paper.
+This repository formalises Theorem 1.3 of the
+[working manuscript by Ayush Basu, Abhishek Dhawan and Abhishek Methuku](manuscript/KMV_proof.tex),
+assuming the vertex-colouring bound specified below as an external premise.
+The frozen manuscript is version 21; its SHA-256 hash is recorded in
+[`manuscript/provenance.json`](manuscript/provenance.json).
 
-Theorem 3.1 of Kostochka, Mubayi and Verstraete,
+Theorem 3.1 of Kostochka, Mubayi and Verstraëte,
 [*Hypergraph Ramsey numbers: Triangles versus cliques*](https://doi.org/10.1016/j.jcta.2013.04.009)
 (2013; [author-hosted text](https://homepages.math.uic.edu/~mubayi/papers/tri-finalrevised.pdf)),
-gives the bound n^(2/3)/(8r^3) for the same mixed-rank, loose-triangle-free class.
-The present conclusion adds the unbounded factor (log log n)^(1/3), conditional
-on the stated coloring premise. The research context is independent sets,
-hypergraph coloring, and loose-triangle Ramsey bounds in extremal and
-probabilistic combinatorics.
+shows that, for every integer $r\ge 3$, every $n$-vertex hypergraph $H$ with no
+loose triangle and with all edge sizes between $3$ and $r$ satisfies
 
-The manuscript derives from this independent-set bound
+```math
+\alpha(H) \ge \frac{n^{2/3}}{8r^3}.
+```
 
-$$R(C_3,K_t^{(r)})\le C_r\,\frac{t^{3/2}}{\sqrt{\log\log t}}=o(t^{3/2})$$
+Under the stated Li–Postle assumption, the present result improves the order of
+this bound by the unbounded factor $(\log\log n)^{1/3}$ for each fixed $r$ as
+$n\to\infty$. The problem connects independent sets and hypergraph colouring
+with loose-triangle Ramsey bounds in extremal and probabilistic combinatorics.
 
-for every fixed $r\ge3$ and sufficiently large $t$. Here $C_3$ is the
-$r$-uniform loose triangle. This is the manuscript's resolution of the
+The manuscript derives the following Ramsey bound from the independent-set estimate:
+
+```math
+R(C_3,K_t^{(r)}) \le C_r\frac{t^{3/2}}{\sqrt{\log\log t}} = o(t^{3/2}),
+```
+
+where, for every fixed integer $r\ge 3$, there is a constant $C_r>0$ for which
+the inequality holds for all sufficiently large $t$. Here $C_3$ is the
+$r$-uniform loose triangle and $K_t^{(r)}$ is the complete $r$-uniform hypergraph
+on $t$ vertices. This is the manuscript’s resolution of the
 **2013 Kostochka–Mubayi–Verstraëte conjecture** (Conjecture 1.1 in their paper).
-The Lean submission proves the independent-set bound conditional on the
-explicit Li–Postle premise. The asymptotic conversion to this Ramsey statement
-is supplied in the manuscript and is not yet formalised in this repository.
+The Lean development proves the independent-set bound conditional on the explicit
+Li–Postle premise. The asymptotic deduction of the Ramsey bound is proved in the
+manuscript and is not yet formalised in this repository.
 
-The external premise comes from Lina Li and Luke Postle,
+The external premise is based on Theorem 1.4 of Lina Li and Luke Postle,
 [*The chromatic number of triangle-free hypergraphs*](https://arxiv.org/abs/2202.02839v3),
-Theorem 1.4 of version 3 (21 August 2025). The manuscript states the normalized
-ordinary vertex-coloring specialization as Theorem 2.1. `LiPostle34` assumes that
-precise specialization with degree upper bounds at least 8. Its derivation
-from the general list-coloring theorem is explained in the manuscript but is
-not itself formalised here. Li–Postle triangles use a different, stronger
-forbidden-configuration condition than loose triangles; both definitions are
-explicit in `Challenge.lean`, and the proof performs the required reduction.
+version 3 (21 August 2025). The Lean hypothesis `LiPostle34` states the ordinary
+vertex-colouring specialisation for hypergraphs whose edges have size $3$ or $4$,
+with real degree upper bounds $D_3,D_4\ge 8$, as stated in manuscript Theorem 2.1.
+The manuscript explains how this follows from Li–Postle’s list-colouring theorem;
+that derivation is not itself formalised here.
 
-This repository contains the substantive Lean development built from the
-manuscript. It imports the pinned Mathlib dependencies and no separate prior
-project formalisation. The namespace `KMV` refers to the problem's literature
-context; the working manuscript and the formalisation retain the distinct
-authorship recorded in `formalization.yaml`.
+Every loose triangle is a Li–Postle triangle, but the converse need not hold.
+Thus Li–Postle’s triangle-free hypothesis is stronger than the absence of loose
+triangles. Both notions are defined explicitly in [`Challenge.lean`](Challenge.lean),
+and the Lean development carries out the reduction needed to apply the assumed
+colouring bound.
+
+This repository contains the substantive Lean development based on the manuscript.
+It uses pinned Mathlib dependencies and does not import a separate prior project
+formalisation. The namespace `KMV` refers to the problem’s literature context;
+authorship of the working manuscript and of the formalisation is recorded
+separately in [`formalization.yaml`](formalization.yaml).
 
 ## Verification status
 
