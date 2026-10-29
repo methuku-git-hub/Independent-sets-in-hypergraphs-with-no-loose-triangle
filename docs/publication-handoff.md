@@ -5,8 +5,7 @@ of sizes 3 and 4, the Lean theorem proves that for every fixed r >= 3 and all
 sufficiently large n, every n-vertex hypergraph with edge sizes between 3 and r
 and no loose triangle has an independent set of size at least
 c_r n^(2/3) (log log n)^(1/3). The manuscript derives the Ramsey consequence
-resolving the 2013 Kostochka–Mubayi–Verstraëte conjecture; that deduction is not
-yet formalised in this repository.
+resolving the 2013 Kostochka–Mubayi–Verstraëte conjecture.
 The source and verification reports are published in the GitHub repository below.
 Official full preflight passed at commit `8c1ffa95ef08c6788434011dbb0bc794884e8bb8`.
 The report is `evidence/palomar-preflight-8c1ffa95.json`; submission, editorial
