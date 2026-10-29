@@ -10,8 +10,8 @@ project:
     and N such that every n-vertex hypergraph with n >= N, edge sizes between 3
     and r, and no loose triangle has an independent set of size at least
     c n^(2/3) (log log n)^(1/3).
-    The implication is proved in Lean; the Li–Postle premise and the manuscript's
-    Ramsey corollary are not proved in this development.
+    The implication is proved in Lean; the Li–Postle premise is not proved
+    in this development.
   authors:
   - Abhishek Methuku
   license: Apache-2.0
@@ -59,8 +59,7 @@ status:
     c n^(2/3) (log log n)^(1/3). The implication and all of its proof obligations
     are proved. LiPostle34 is an explicit hypothesis, not a custom axiom. The
     manuscript derives the Ramsey bound O_r(t^(3/2)/sqrt(log log t)), resolving
-    the 2013 Kostochka–Mubayi–Verstraëte conjecture; this Ramsey deduction is
-    outside the submitted Lean target.
+    the 2013 Kostochka–Mubayi–Verstraëte conjecture.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
