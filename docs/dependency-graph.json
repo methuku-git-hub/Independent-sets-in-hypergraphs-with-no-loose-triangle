@@ -97,7 +97,7 @@
       "depends_on": [
         "main"
       ],
-      "status": "outside current primary target; unimplemented"
+      "status": "standard asymptotic consequence in the manuscript"
     },
     {
       "id": "color_class",
