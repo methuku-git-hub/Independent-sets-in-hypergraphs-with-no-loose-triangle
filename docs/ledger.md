@@ -12,7 +12,6 @@ an unproved hypothesis in the main result.
 The final conclusion is Theorem 1.3 in manuscript version 21, including mixed
 edge sizes 3,...,r. Constants c and N are quantified after r and before n,H.
 There is no restriction to uniform hypergraphs or loss of the log-log factor.
-The Ramsey consequence is not the current primary formalisation target.
 
 ## Statement fidelity
 
