@@ -21,7 +21,7 @@ The ambient `Fin n` includes isolated vertices. Edges are distinct subsets of
 the vertex set.
 
 `LiPostle34` is exactly the ordinary vertex-coloring specialization stated in
-manuscript Theorem 2.1, with real degree bounds D3,D4 ≥ 8. The digits `34`
+manuscript Theorem 2.1. The digits `34`
 refer to edge sizes 3 and 4; colors are assigned to vertices, not to edges.
 It is a proposition argument,
 not a custom axiom. Li–Postle itself is not proved in this development.
@@ -51,8 +51,7 @@ loose triangle and with all edge sizes between $3$ and $r$ satisfies
 
 Under the stated Li–Postle assumption, the present result improves the order of
 this bound by the unbounded factor $(\log\log n)^{1/3}$ for each fixed $r$ as
-$n\to\infty$. The problem connects independent sets and hypergraph colouring
-with loose-triangle Ramsey bounds in extremal and probabilistic combinatorics.
+$n\to\infty$.
 
 The manuscript derives the following Ramsey bound from the independent-set estimate:
 
@@ -70,11 +69,9 @@ Li–Postle premise.
 
 The external premise is based on Theorem 1.4 of Lina Li and Luke Postle,
 [*The chromatic number of triangle-free hypergraphs*](https://arxiv.org/abs/2202.02839v3),
-version 3 (21 August 2025). The Lean hypothesis `LiPostle34` states the ordinary
-vertex-colouring specialisation for hypergraphs whose edges have size $3$ or $4$,
-with real degree upper bounds $D_3,D_4\ge 8$, as stated in manuscript Theorem 2.1.
-The manuscript explains how this follows from Li–Postle’s list-colouring theorem;
-that derivation is not itself formalised here.
+version 3 (21 August 2025). The Lean hypothesis `LiPostle34` is the ordinary
+vertex-colouring bound for hypergraphs with edges of sizes $3$ and $4$ stated
+in manuscript Theorem 2.1.
 
 Every loose triangle is a Li–Postle triangle, but the converse need not hold.
 Thus Li–Postle’s triangle-free hypothesis is stronger than the absence of loose
