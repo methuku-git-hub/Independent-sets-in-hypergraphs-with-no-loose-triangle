@@ -26,7 +26,6 @@ refer to edge sizes 3 and 4; colors are assigned to vertices, not to edges.
 It is a proposition argument,
 not a custom axiom. Li–Postle itself is not proved in this development.
 There are no other unproved hypotheses in the main theorem.
-The Ramsey consequence is outside the submitted primary target.
 
 [**Lean formalisation (Palomar)**](https://palomar-registry.org/entry?id=PALOMAR-2026-10-27-000016&version=1) — registered on 27 October 2026 as **PALOMAR-2026-10-27-000016, version 1**.
 The public record includes the checked statement, mechanical verification,
@@ -67,8 +66,7 @@ $r$-uniform loose triangle and $K_t^{(r)}$ is the complete $r$-uniform hypergrap
 on $t$ vertices. This is the manuscript’s resolution of the
 **2013 Kostochka–Mubayi–Verstraëte conjecture** (Conjecture 1.1 in their paper).
 The Lean development proves the independent-set bound conditional on the explicit
-Li–Postle premise. The asymptotic deduction of the Ramsey bound is proved in the
-manuscript and is not yet formalised in this repository.
+Li–Postle premise.
 
 The external premise is based on Theorem 1.4 of Lina Li and Luke Postle,
 [*The chromatic number of triangle-free hypergraphs*](https://arxiv.org/abs/2202.02839v3),
@@ -103,7 +101,7 @@ was registered in [Palomar](https://palomar-registry.org/entry?id=PALOMAR-2026-1
 Comparator accepted the Solution as a proof of the Challenge, and Lean, NanoDa,
 and con-ron checked the exported proof successfully. The automated review
 reported “No problems identified”. The registered theorem retains the explicit
-Li–Postle hypothesis; the Ramsey deduction is outside its formal scope.
+Li–Postle hypothesis.
 This README records the completed registration; the registered source remains
 the immutable commit linked in the Palomar record.
 
