@@ -1,5 +1,13 @@
 # Independent sets in hypergraphs with no loose triangle
 
+## Paper abstract
+
+**Paper authors:** Ayush Basu, Abhishek Dhawan and Abhishek Methuku.
+
+A loose triangle consists of three edges whose pairwise intersections are distinct single vertices. An independent set in a hypergraph is a set of vertices containing no edge. We prove that, for every fixed $r\ge3$, there is a constant $c_r>0$ such that every sufficiently large $n$-vertex hypergraph with no loose triangle and with edge sizes between $3$ and $r$ has an independent set of size at least $c_r n^{2/3}(\log\log n)^{1/3}$. This implies that the Ramsey number of the $r$-uniform loose triangle versus the complete $r$-uniform hypergraph on $t$ vertices is at most $C_r t^{3/2}/\sqrt{\log\log t}$ for a constant $C_r>0$ and all sufficiently large $t$, proving a conjecture of Kostochka, Mubayi and Verstraëte from 2013. The proof chooses vertices randomly while avoiding pairs that lie in many edges, and then deletes vertices to eliminate all triples of edges for which each pair intersects outside the third edge. A theorem of Li and Postle then yields the required independent set.
+
+*Formalization scope:* The Lean formalization assumes the stated Li–Postle coloring theorem.
+
 Lean formalisation of the independent-set theorem in manuscript version 21,
 Theorem 1.3, **assuming the ordinary vertex-coloring bound obtained by specializing
 Li–Postle's theorem to hypergraphs with edges of sizes 3 and 4**:
