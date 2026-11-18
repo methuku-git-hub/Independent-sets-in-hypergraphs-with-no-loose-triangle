@@ -1,20 +1,15 @@
 # Independent sets in hypergraphs with no loose triangle
 
-## Paper abstract
+## The mathematical statement
 
-**Paper authors:** Ayush Basu, Abhishek Dhawan and Abhishek Methuku.
-
-A loose triangle consists of three edges whose pairwise intersections are distinct single vertices. An independent set in a hypergraph is a set of vertices containing no edge. We prove that, for every fixed $r\ge3$, there is a constant $c_r>0$ such that every sufficiently large $n$-vertex hypergraph with no loose triangle and with edge sizes between $3$ and $r$ has an independent set of size at least $c_r n^{2/3}(\log\log n)^{1/3}$. This implies that the Ramsey number of the $r$-uniform loose triangle versus the complete $r$-uniform hypergraph on $t$ vertices is at most $C_r t^{3/2}/\sqrt{\log\log t}$ for a constant $C_r>0$ and all sufficiently large $t$, proving a conjecture of Kostochka, Mubayi and Verstraëte from 2013. The proof chooses vertices randomly while avoiding pairs that lie in many edges, and then deletes vertices to eliminate all triples of edges for which each pair intersects outside the third edge. A theorem of Li and Postle then yields the required independent set.
-
-*Formalization scope:* The Lean formalization assumes the stated Li–Postle coloring theorem.
+The mathematical paper is by **Ayush Basu, Abhishek Dhawan and Abhishek Methuku**. The Lean formalization assumes the stated Li–Postle coloring theorem.
 
 Lean formalisation of the independent-set theorem in manuscript version 21,
 Theorem 1.3, **assuming the ordinary vertex-coloring bound obtained by specializing
 Li–Postle's theorem to hypergraphs with edges of sizes 3 and 4**:
 
-```lean
-theorem KMV.main_result (hLP : KMV.LiPostle34) : KMV.KMVStatement
-```
+The proved declaration is `KMV.main_result`, with argument
+`hLP : KMV.LiPostle34` and conclusion `KMV.KMVStatement`.
 
 Under this assumption, for every fixed integer $r \ge 3$ there are constants
 $c_r>0$ and $N_r$ such that every hypergraph $H$ on $n\ge N_r$ vertices, with
@@ -28,6 +23,35 @@ $n$ or $H$. The edge sizes may differ.
 The ambient `Fin n` includes isolated vertices. Edges are distinct subsets of
 the vertex set.
 
+
+### Exact Lean statement
+
+The following definition is copied from [`Challenge.lean`](Challenge.lean),
+inside the `KMV` namespace:
+
+```lean
+@[expose] def KMVStatement : Prop :=
+  ∀ r : ℕ, 3 ≤ r → ∃ c : ℝ, 0 < c ∧ ∃ N : ℕ,
+  ∀ n : ℕ, N ≤ n → ∀ H : Hypergraph (Fin n),
+  RankBounds H r → LooseTriangleFree H →
+  ∃ I : Finset (Fin n), Independent H I ∧
+    c * Real.rpow (n : ℝ) (2 / 3 : ℝ) *
+      Real.rpow (Real.log (Real.log (n : ℝ))) (1 / 3 : ℝ) ≤ (I.card : ℝ)
+```
+
+[`Hypergraph`](Challenge.lean) represents the edge set as a finite collection
+of finite vertex sets. [`RankBounds`](Challenge.lean) imposes the edge-size
+bounds, [`LooseTriangleFree`](Challenge.lean) excludes loose triangles, and
+[`Independent`](Challenge.lean) says that the chosen set contains no edge.
+The proposition quantifies over $r$ before choosing $c$ and $N$, and then over
+$n$ and $H$.
+
+The proved declaration [`KMV.main_result`](KMV/Main.lean) takes the explicit
+premise `hLP : LiPostle34` and proves `KMVStatement`. The `sorry` in
+[`Challenge.lean`](Challenge.lean) is an intentional statement-only placeholder
+for comparison; [`Solution.lean`](Solution.lean) imports the actual proof and
+does not import the Challenge.
+
 `LiPostle34` is exactly the ordinary vertex-coloring specialization stated in
 manuscript Theorem 2.1. The digits `34`
 refer to edge sizes 3 and 4; colors are assigned to vertices, not to edges.
@@ -38,6 +62,24 @@ There are no other unproved hypotheses in the main theorem.
 [**Lean formalisation (Palomar)**](https://palomar-registry.org/entry?id=PALOMAR-2026-10-27-000016&version=1) — registered on 27 October 2026 as **PALOMAR-2026-10-27-000016, version 1**.
 The public record includes the checked statement, mechanical verification,
 automated review, and preserved source files.
+
+## Paper abstract
+
+**Paper authors:** Ayush Basu, Abhishek Dhawan and Abhishek Methuku.
+
+An $r$-uniform loose triangle $C_3$ consists of three edges that intersect pairwise in exactly one vertex and have no vertex common to all three.
+For graphs, this is the usual triangle, and the Ramsey number $R(C_3,K_t)$ has order of magnitude $t^2/\log t$ by celebrated results of Ajtai, Komlós, and Szemerédi and of Kim.
+
+Kostochka, Mubayi, and Verstraëte proved that $R(C_3,K_t^{(r)})=O_r(t^{3/2})$ for every fixed $r\ge3$ and showed that this bound is sharp up to a logarithmic factor.
+Motivated by the logarithmic saving in the graph case, they conjectured in 2013 that the upper bound could be improved to $o(t^{3/2})$.
+This conjecture has since received significant attention and has been reiterated in several papers.
+We prove the conjecture by showing that, for every fixed $r\ge3$,
+
+$$
+R(C_3,K_t^{(r)}) =O_r\left(\frac{t^{3/2}}{\sqrt{\log\log t}}\right).
+$$
+
+[*Ramsey numbers of loose triangles versus cliques*](https://arxiv.org/abs/2611.16957)
 
 ## Mathematical context and sources
 
@@ -146,38 +188,27 @@ density bound, structural reduction, auxiliary graph properties, exhaustive
 triangle classification and cover, all configuration counts and losses,
 complete cleaning, eventual parameter bounds and the final coloring argument.
 
-## Reproduction
+## Building and reproduction
 
-Lean is pinned to 4.35.0-rc2; Mathlib and every transitive package are pinned
-in `lake-manifest.json`. On a supported installation:
+The [Palomar-registered snapshot](https://palomar-registry.org/entry?id=PALOMAR-2026-10-27-000016&version=1)
+pins Lean 4.35.0-rc2 and its dependencies. With Git and
+[elan](https://github.com/leanprover/elan) installed, it can be checked out and
+built with:
 
 ```sh
+git clone https://github.com/methuku-git-hub/Independent-sets-in-hypergraphs-with-no-loose-triangle.git
+cd Independent-sets-in-hypergraphs-with-no-loose-triangle
+git checkout ea281d7cf047227e8fde38bfc124db1117ed7c37
 lake exe cache get
-python3 scripts/verify.py
+lake build
 ```
 
-The script clears only project build products, rebuilds the proof, verifies the
-main theorem's axiom closure, and separately elaborates Challenge. It does not
-run the official Palomar workflow.
-
-In the present environment, the standalone Lean executable fails during
-executable-location discovery. The unmodified Lake executable can host the
-ordinary Lean frontend with `trustLevel = 0`:
-
-```sh
-export KMV_LEAN_ROOT=/absolute/path/to/lean-4.35.0-rc2-linux
-python3 scripts/bootstrap_local.py
-python3 scripts/verify.py --local
-python3 scripts/check_exports.py
-```
-
-The last command exports proof data using the pinned official exporter,
-compares the statements and audits axioms with the pinned Lake functions,
-and invokes the bundled NanoDa, con-ron and Lean kernels on the exports.
-It does not evaluate project configuration or execute a source build inside
-bubblewrap, and is not Palomar's complete preflight.
-This runtime refuses bubblewrap namespace creation; that restriction is not
-disabled. The official full workflow has since succeeded on GitHub's runner.
+The cache command optionally downloads available Mathlib artifacts. A local
+build is a reproducibility check, not a Palomar preflight or a new registration.
+The historical `scripts/verify.py` rebuilds the proof and checks its axiom
+closure; it clears project build products. Earlier environment-specific local
+verification and export evidence is preserved in the repository's `evidence/`
+directory and in the [verification archive](KMV_Lean_verified_conditional_proof.zip).
 
 ## Publication and rights
 
